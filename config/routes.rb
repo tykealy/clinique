@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # Defines the root path route ("/")
-  # root to: "adminindex"
+  root to: "admin/sign_in#index"
   scope "(:locale)", locale: /#{I18n.available_locales.join('|')}/ do
     namespace :api do
       namespace :v1 do
