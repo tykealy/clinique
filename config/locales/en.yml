@@ -29,3 +29,12 @@
 
 en:
   hello: "Hello world"
+  home:
+    home: "Home"
+    patients: "Patients"
+    appointments: "Appointments"
+    doctors: "Doctors"
+    setting: "Setting"
+    sign_out: "Sign Out"
+  
+

@@ -12,6 +12,9 @@ class Admin::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
+    if user_signed_in?
+      flash[:notice] = "Welcome back, #{current_user.email}!"
+    end
   end
 
   # DELETE /resource/sign_out
