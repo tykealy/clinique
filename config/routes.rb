@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     namespace :admin do
       get "/", to: "home#index"
       resources :users
+      resources :clinics
     end
   end # end of the scope
 end

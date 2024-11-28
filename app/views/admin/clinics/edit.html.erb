@@ -1,0 +1,78 @@
+<%= render partial: "admin/shared/sidebar", local: {} %>
+
+<div class="p-4 sm:ml-64">
+    <h2 class="text-2xl font-semibold text-gray-900 mb-6 px-8">Edit Clinic</h2>
+    <div class=" bg-white rounded-lg px-8 ">
+        <%= form_with model: @current_clinic, url: { action: 'update' }, class: "" do |f| %>
+        <div class="grid grid-row-4 grid-cols-2 gap-8">
+            <div class="w-full">
+                <%= f.label :logo, class: "block text-sm font-medium text-gray-700" %>
+                
+                <% if @current_clinic.logo.attached? %>
+                <div class="mb-4">
+                    <img src="<%= url_for(@current_clinic.logo) %>" alt="Current Logo" class="w-32 h-32 object-cover rounded-md mb-2">
+                    <p class="text-sm text-gray-500">Current Logo</p>
+                </div>
+                <% end %>
+
+            </div>
+            <div class="w-full">
+                <%= f.file_field :logo, class: "mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" %>
+            </div>
+            <div class="w-full">
+                <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :name, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+
+            <!-- Address Field -->
+            <div class="w-full"> 
+                <%= f.label :address, class: "block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :address, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="w-full">
+                <%= f.label :phone, class: "block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :phone, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+
+            <!-- Email Field -->
+            <div class="w-full">
+                <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+                <%= f.email_field :email, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+
+            <!-- Website Field -->
+            <div class="w-full">
+                <%= f.label :website, class: "block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :website, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+
+            <!-- Status Field -->
+            <div class="w-full">
+                <%= f.label :status, class: "block text-sm font-medium text-gray-700" %>
+                <%= f.select :status, Clinic.statuses.keys.map { |key| [key.humanize, key] }, { include_blank: "Select Status" }, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+
+            <!-- Description Field -->
+            <div class="w-full col-span-2">
+                <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
+                <%= f.text_area :description, rows: 4, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+
+
+            <!-- Submit Button -->
+            <div class="w-full col-span-2">
+                <%= f.submit "Update Clinic", class: "w-full bg-primary text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+            </div>
+        </div>
+        <% end %>
+  </div>
+  <% if flash.any? %>
+    <% flash.each do |type, msg| %>
+        <div class="p-4 mx-auto mb-4 w-96 text-align-end text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+            <span class="font-medium">Info alert!</span> <%= msg %>
+        </div>
+    <% end %>
+ <% end %>
+</div>
