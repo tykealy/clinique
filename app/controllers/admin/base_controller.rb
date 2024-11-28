@@ -5,6 +5,10 @@ module Admin
 
     def current_clinic
       @current_clinic ||= current_user.clinic
+
+      if @current_clinic.nil?
+        render file: "#{Rails.root}/public/404.html", status: :not_found
+      end
     end
   end
 end
