@@ -4,7 +4,7 @@ module Admin
     def index
     end
     def edit
-      @current_clinic = Clinic.find(params[:id])
+      # @current_clinic = Clinic.find(params[:id])
     end
 
     def update

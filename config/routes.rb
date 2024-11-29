@@ -25,6 +25,8 @@ Rails.application.routes.draw do
       get "/", to: "home#index"
       resources :users
       resources :clinics
+      resources :appointments
+      resources :doctors
     end
   end # end of the scope
 end
