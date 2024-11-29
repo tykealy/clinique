@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_28_153345) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_163444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_28_153345) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "date"
+    t.integer "status"
+    t.integer "user_id"
+    t.integer "clinic_id"
+    t.integer "doctor_id"
+    t.string "description"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "clinics", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -50,6 +62,19 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_28_153345) do
     t.string "website"
     t.text "description"
     t.integer "status", default: 0
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_namey"
+    t.string "phone_number"
+    t.string "email"
+    t.string "address"
+    t.integer "age"
+    t.integer "clinic_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
