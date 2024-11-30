@@ -2,8 +2,8 @@
 module Api
   module V1
     class UsersController < BaseController
-      skip_before_action :authenticate_user!, only: [ :create ]
-      skip_before_action :verify_authenticity_token, only: [ :create ]
+      skip_before_action :authenticate_user!, only: [:create]
+      skip_before_action :verify_authenticity_token, only: [:create]
       def index
         @users = User.all
         render json: @users
