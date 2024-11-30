@@ -32,6 +32,13 @@ module Admin
       end
     end
 
+    def destroy
+      @doctor = Doctor.find(params[:id])
+      @doctor.destroy
+      flash[:success] = I18n.t('flash.success')
+      redirect_to admin_doctors_path
+    end
+
     private
 
     def load_doctor
@@ -39,7 +46,7 @@ module Admin
     end
 
     def doctor_params
-      params.require(:doctor).permit(:first_name, :last_name, :phone_number, :email, :address, :age, :profile)
+      params.require(:doctor).permit(:first_name, :last_name, :phone_number, :email, :address, :age, :profile, :description)
     end
   end
 end

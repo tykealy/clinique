@@ -1,11 +1,11 @@
 <%= render partial: "admin/shared/sidebar", local: {} %>
-<div class="p-4 sm:ml-64">
-  <h2 class="text-2xl font-semibold text-gray-900 mb-6 px-8">Edit Clinic</h2>
-  <div class=" bg-white rounded-lg px-8 ">
+<div class="p-4 sm:ml-64 mt-20">
+  <h2 class="text-2xl font-semibold text-gray-900 mb-6 px-4">Edit Clinic</h2>
+  <div  class=" bg-white rounded-lg px-4 mx-4 py-4 border-2 ">
     <%= form_with model: @current_clinic, url: { action: 'update' }, class: "" do |f| %>
       <div class="grid grid-row-4 grid-cols-2 gap-8">
         <div class="w-full">
-          <%= f.label :logo, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label I18n.t('clinic.logo'), class: "block text-sm font-medium text-gray-700" %>
           <% if @current_clinic.logo.attached? %>
             <div class="mb-4 flex justify-center">
               <img src="<%= url_for(@current_clinic.logo) %>" alt="Current Logo" class="w-36 h-36 object-cover rounded-md mb-2">
@@ -48,7 +48,7 @@
         </div>
         <!-- Submit Button -->
         <div class="w-full col-span-2">
-          <%= f.submit "Update Clinic", class: "w-full bg-primary text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <%= f.submit "Update Clinic", class: "w-full bg-primary text-white font-semibold py-2 px-4 rounded-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
         </div>
       </div>
     <% end %>

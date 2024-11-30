@@ -11,7 +11,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#92bea0",
-        secondary: "#ffed4a",
+        secondary: "#5f908b",
         danger: "#e3342f",
       },
       fontFamily: {
