@@ -1,27 +1,29 @@
 <%= render partial: "/admin/shared/sidebar" %>
 <div class="sm:ml-64 mt-20">
-  <header class="px-6 py-1">
-    <ul class="flex items-center">
-      <li class=" flex-1">
-        <h6 class="text-xl leading-8 font-semibold text-gray-900">Edit doctor</h6>
-      </li>
-      <%# <li>
-        <a href="/admin/doctors/new">
-          <button class="py-2.5 pr-7 pl-5 rounded-xl flex items-center gap-2 text-base font-semibold text-white transition-all duration-300 bg-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 5V15M15 10H5" stroke="white" stroke-width="1.6" stroke-linecap="round"></path>
+  <div class="px-4 py-1 mb-10">
+    <ul class="flex items-center gap-5">
+      <li>
+        <a href="/admin/doctors">
+          <button class="hover:bg-secondary py-2.5 pr-7 pl-5 rounded-md flex items-center gap-2 text-base font-semibold text-white transition-all duration-300 bg-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
-            New Doctor
+            Back
           </button>
         </a>
-      </li> %>
+      </li>
+      <li class=" flex-1">
+        <h6 class="text-xl leading-8 font-semibold text-gray-900"><%= @doctor.full_name %></h6>
+      </li>
     </ul>
-  </header>
+  </div>
+  <%= render partial: "doctor_tab", locals: {tab: "General"} %>
   <div>
-    <div class=" bg-white rounded-lg px-8 ">
+    <div class=" bg-white rounded-lg px-4 mx-4 py-4 border-2 ">
       <%= form_with model: @doctor, url: { action: 'update' }, class: "" do |f| %>
         <div class="grid grid-row-4 grid-cols-2 gap-8">
           <div class="items-center">
+            <%= f.label I18n.t('doctor.profile'), class: "block text-sm font-medium text-gray-700" %>
             <% if @doctor.profile.attached? %>
               <div class="mb-4 w-full text-center flex justify-center">
                 <img src="<%= url_for(@doctor.profile) %>" alt="Current Logo" class="w-36 h-36 object-cover rounded-md mb-2">
@@ -59,7 +61,7 @@
           </div>
           <!-- Submit Button -->
           <div class="w-full col-span-2">
-            <%= f.submit "Update Doctor", class: "w-full bg-primary text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+            <%= f.submit "Update Doctor", class: "w-full bg-primary text-white font-semibold py-2 px-4 rounded-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
           </div>
         </div>
       <% end %>

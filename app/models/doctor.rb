@@ -4,9 +4,9 @@ class Doctor < ApplicationRecord
 
   has_many :appointments
   has_one_attached :profile
-  validates :first_name, :last_name, :phone_number, presence: true
+  validates :first_name, :phone_number, presence: true
   validates :phone_number, length: { minimum: 10, maximum: 15 }
-  validates :first_name, :last_name, length: { minimum: 2 }
+  validates :first_name, length: { minimum: 1 }
   validates :phone_number, format: { with: /\A[0-9]+\z/ }
   validate :profile_validation
 
