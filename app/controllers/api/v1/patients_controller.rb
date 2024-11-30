@@ -3,7 +3,7 @@ module Api
   module V1
     class PatientsController < BaseController
       def index
-        @patients = { patients: "asf" }
+        @patients = { patients: 'asf' }
         render json: @patients
       end
     end

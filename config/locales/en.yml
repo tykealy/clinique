@@ -36,5 +36,6 @@ en:
     doctors: "Doctors"
     setting: "Setting"
     sign_out: "Sign Out"
-  
-
+  flash:
+    success: "Clinic updated successfully"
+    danger: "Clinic update failed"
