@@ -1,0 +1,15 @@
+<div class="p-1 mx-4 mb-5 bg-white border-2 rounded-lg ">
+  <ul class="flex w-full gap-6 overflow-auto ">
+    <li class="px-3 py-2 rounded-md <%= 'bg-primary text-white'if tab=="General" %> ">
+      <a href="/admin/patients/<%= @patient.id %>/edit">
+        General
+      </a>
+    </li>
+    <li class="px-3 py-2 rounded-md <%= 'bg-primary'if tab=="Appointments" %> ">
+      Appointments
+    </li>
+    <li class="px-3 py-2 rounded-md <%= 'bg-primary'if tab=='History' %>">History</li>
+    <li class="px-3 py-2 rounded-md <%= 'bg-primary'if tab=='Diagnosis '%>">Diagnosis</li>
+    <li class="px-3 py-2 rounded-md <%= 'bg-primary'if tab=='Treatments '%>">Treatments</li>
+  </ul>
+</div>

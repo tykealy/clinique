@@ -1,0 +1,39 @@
+<div class="grid grid-cols-2 gap-8 grid-row-4">
+  <div class="items-center">
+    <%= f.label I18n.t('doctor.profile'), class: "block text-sm font-medium text-gray-700" %>
+    <% if @doctor.profile.attached? %>
+      <div class="flex justify-center w-full mb-4 text-center">
+        <img src="<%= url_for(@doctor.profile) %>" alt="Current Logo" class="object-cover mb-2 rounded-md w-36 h-36">
+      </div>
+    <% end %>
+    <%= f.file_field :profile, class: "mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" %>
+  </div>
+  <div class="w-full">
+    <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :description, rows: 4, class: "mt-1 block h-44 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+  </div>
+  <div class="w-full">
+    <%= f.label :first_name, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :first_name, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+  </div>
+  <div class="w-full">
+    <%= f.label :last_name, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :last_name, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+  </div>
+  <div class="w-full">
+    <%= f.label :phone_number, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :phone_number, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+  </div>
+  <div class="w-full">
+    <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.email_field :email, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+  </div>
+  <div class="w-full">
+    <%= f.label :address, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :address, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+  </div>
+  <div class="w-full">
+    <%= f.label :age, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :age, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+  </div>
+</div>
