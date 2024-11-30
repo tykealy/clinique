@@ -1,17 +1,17 @@
-<%= render partial: "/admin/shared/sidebar", locals: {tab: 'doctors'} %>
+<%= render partial: "admin/shared/sidebar", locals: {tab: 'patients'} %>
 <div class="mt-20 sm:ml-64">
   <div class="px-6 py-1 mb-10">
     <ul class="flex items-center">
       <li class="flex-1 ">
-        <h6 class="text-3xl font-semibold leading-8 text-gray-900">Doctors</h6>
+        <h6 class="text-3xl font-semibold leading-8 text-gray-900">Patients</h6>
       </li>
       <li>
-        <a href="/admin/doctors/new">
+        <a href="/admin/patients/new">
           <button class="hover:bg-secondary py-2.5 pr-7 pl-5 rounded-xl flex items-center gap-2 text-base font-semibold text-white transition-all duration-300 bg-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M10 5V15M15 10H5" stroke="white" stroke-width="1.6" stroke-linecap="round"></path>
             </svg>
-            New Doctor
+            New Patients
           </button>
         </a>
       </li>
@@ -31,20 +31,20 @@
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-          <% @doctors.each do |doctor| %>
+          <% @patients.each do |patient| %>
             <tr>
               <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                <a href=<%= "/admin/doctors/#{doctor.id}/edit" %> >
-                  <%= doctor.full_name %>
+                <a href=<%= "/admin/patients/#{patient.id}/edit" %> >
+                  <%= patient.full_name %>
                 </a>
               </td>
-              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><%= doctor.phone_number %></td>
-              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><%= doctor.email %></td>
-              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><%= doctor.address %></td>
-              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><%= doctor.age %></td>
+              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><%= patient.phone_number %></td>
+              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><%= patient.email %></td>
+              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><%= patient.address %></td>
+              <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap"><%= patient.age %></td>
               <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                <a href="/admin/doctors/<%= doctor.id %>/edit" class="text-primary hover:text-secondary">Edit</a>
-                <%= link_to admin_doctor_path(id: doctor.id),
+                <a href="/admin/patients/<%= patient.id %>/edit" class="text-primary hover:text-secondary">Edit</a>
+                <%= link_to admin_patient_path(id: patient.id),
                     data: {
                       turbo_method: :delete,
                       turbo_confirm: "Are you sure?"

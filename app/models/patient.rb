@@ -1,16 +1,15 @@
-class Doctor < ApplicationRecord
-  belongs_to :clinic
+class Patient < ApplicationRecord
   belongs_to :user
-
-  has_many :appointments
+  belongs_to :clinic
   has_one_attached :profile
+
   validates :first_name, :phone_number, presence: true
   validates :phone_number, length: { minimum: 9, maximum: 15 }
   validates :first_name, length: { minimum: 1 }
   validates :phone_number, format: { with: /\A[0-9]+\z/ }
   validate :profile_validation
 
-  before_validation :create_doctor_user, if: -> { user_id.nil? }
+  before_validation :create_patient_user, if: -> { user_id.nil? }
 
   def full_name
     "#{first_name} #{last_name}"
@@ -25,7 +24,7 @@ class Doctor < ApplicationRecord
     errors.add(:profile, 'must be a JPEG or PNG')
   end
 
-  def create_doctor_user
+  def create_patient_user
     return if user.present?
 
     user = User.create!(
