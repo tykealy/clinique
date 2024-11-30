@@ -39,3 +39,5 @@ en:
   flash:
     success: "Clinic updated successfully"
     danger: "Clinic update failed"
+    notice:
+      logout: "You've been logged out."

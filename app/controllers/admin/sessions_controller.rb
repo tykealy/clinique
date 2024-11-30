@@ -13,6 +13,13 @@ class Admin::SessionsController < Devise::SessionsController
     flash[:notice] = "Welcome back, #{current_user.email}!"
   end
 
+  def destory
+    super
+    flash[:notice] = I18n.t('flash.notice.logout')
+
+    redirect_to new_user_session_path
+  end
+
   # DELETE /resource/sign_out
 
   # protected
