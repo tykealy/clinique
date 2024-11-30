@@ -6,9 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/bosba.png" type="image/png">
     <link rel="icon" href="/bosba.svg" type="image/svg+xml">
@@ -17,15 +15,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
-    <% flash.each do |type, msg| %>
-      <div class=''>
-        <%= msg %>
-      </div>
-    <% end %>
   </body>
 </html>
