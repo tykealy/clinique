@@ -3,54 +3,7 @@
   <h2 class="px-4 mb-6 text-2xl font-semibold text-gray-900">Edit Clinic</h2>
   <div  class="px-4 py-4 mx-4 bg-white border-2 rounded-lg ">
     <%= form_with model: @current_clinic, url: { action: 'update' }, class: "" do |f| %>
-      <div class="grid grid-cols-2 gap-8 grid-row-4">
-        <div class="w-full">
-          <%= f.label I18n.t('clinic.logo'), class: "block text-sm font-medium text-gray-700" %>
-          <% if @current_clinic.logo.attached? %>
-            <div class="flex justify-center mb-4">
-              <img src="<%= url_for(@current_clinic.logo) %>" alt="Current Logo" class="object-cover mb-2 rounded-md w-36 h-36">
-            </div>
-          <% end %>
-          <%= f.file_field :profile, class: "mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md focus:ring-primary focus:border-primary" %>
-        </div>
-        <div class="w-full ">
-          <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
-          <%= f.text_area :description, rows: 4, class: "mt-1 block h-48 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
-        </div>
-        <div class="w-full">
-          <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
-          <%= f.text_field :name, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
-        </div>
-        <!-- Address Field -->
-        <div class="w-full">
-          <%= f.label :address, class: "block text-sm font-medium text-gray-700" %>
-          <%= f.text_field :address, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
-        </div>
-        <!-- Phone Field -->
-        <div class="w-full">
-          <%= f.label :phone, class: "block text-sm font-medium text-gray-700" %>
-          <%= f.text_field :phone, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
-        </div>
-        <!-- Email Field -->
-        <div class="w-full">
-          <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
-          <%= f.email_field :email, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
-        </div>
-        <!-- Website Field -->
-        <div class="w-full">
-          <%= f.label :website, class: "block text-sm font-medium text-gray-700" %>
-          <%= f.text_field :website, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
-        </div>
-        <!-- Status Field -->
-        <div class="w-full">
-          <%= f.label :status, class: "block text-sm font-medium text-gray-700" %>
-          <%= f.select :status, Clinic.statuses.keys.map { |key| [key.humanize, key] }, { include_blank: "Select Status" }, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
-        </div>
-        <!-- Submit Button -->
-        <div class="w-full col-span-2">
-          <%= f.submit "Update Clinic", class: "w-full bg-primary text-white font-semibold py-2 px-4 rounded-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
-        </div>
-      </div>
+      <%=render partial: 'form', locals: {f:f}%>
     <% end %>
   </div>
 </div>
