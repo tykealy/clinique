@@ -12,9 +12,9 @@ export default class extends Controller {
       const reader = new FileReader();
       reader.onload = (e) => {
         this.previewTarget.src = e.target.result;
-        this.containerTarget.classList.remove("hidden"); // Show profile container
-        this.iconTarget.classList.remove("hidden"); // Show profile icon
-        this.handlerTarget.classList.add("hidden"); // Hide the handler
+        this.containerTarget.classList.remove("hidden");
+        this.iconTarget.classList.remove("hidden"); 
+        this.handlerTarget.classList.add("hidden"); 
       };
       reader.readAsDataURL(file);
     }
