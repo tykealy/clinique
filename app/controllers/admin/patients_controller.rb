@@ -9,6 +9,20 @@ module Admin
       @patient = Patient.new
     end
 
+    def search
+      search = params[:search].to_s.strip
+
+      patients = if search.present?
+                   Patient
+                     .where('first_name ILIKE :search OR last_name ILIKE :search OR phone_number ILIKE :search', search: "%#{search}%")
+                     .select(:id, :first_name, :last_name, :phone_number)
+                     .limit(10)
+                 else
+                   []
+                 end
+      render json: patients
+    end
+
     def create
       @patient = Patient.new(patient_params)
       @patient.clinic_id = @current_clinic.id
