@@ -1,5 +1,5 @@
 <%= render partial: "admin/shared/sidebar", locals: {tab: 'clinic'} %>
-<div class="p-4 mt-20 sm:ml-64">
+<div class="p-4 mt-20 md:ml-64">
   <h2 class="px-4 mb-6 text-2xl font-semibold text-gray-900">Edit Clinic</h2>
   <div  class="px-4 py-4 mx-4 bg-white border-2 rounded-lg ">
     <%= form_with model: @current_clinic, url: { action: 'update' }, class: "" do |f| %>

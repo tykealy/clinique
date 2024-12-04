@@ -17,6 +17,7 @@ module Clinique
     config.autoload_lib(ignore: %w[assets tasks])
 
     config.i18n.available_locales = [:en]
+    config.autoload_paths += %W[#{config.root}/app/queries]
 
     # Configuration for the application, engines, and railties goes here.
     #

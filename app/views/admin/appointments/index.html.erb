@@ -1,210 +1,5 @@
-  <% weekdates =[
-    {date: "Jan 7", day: "Fri"},
-    {date: "Jan 8", day: "Sat"},
-    {date: "Jan 9", day: "Sun"},
-    {date: "Jan 10", day: "Mon"},
-    {date: "Jan 11", day: "Tue"},
-    {date: "Jan 12", day: "Wed"},
-    {date: "Jan 13", day: "Thu"},
-  ]%>
-<%
-  appointments = {
-    7 => {
-      "Jan 7" => [
-      ],
-      "Jan 8" => [
-        { title: "Doctor's appointment", doctor: "Dr. Lee", time: "07:00 - 07:30" },
-        { title: "Doctor's appointment", doctor: "Dr. Lee", time: "07:00 - 07:30" },
-      ],
-      "Jan 9" => [],
-      "Jan 10" => [
-      ],
-      "Jan 11" => [],
-      "Jan 12" => [
-        { title: "Pickup the grandmother", doctor: "Dr. Smith", time: "07:00 - 07:30" }
-      ],
-      "Jan 13" => [],
-    },
-    8 => {
-      "Jan 7" => [
-        { title: "Morning run", doctor: "None", time: "08:00 - 09:00" }
-      ],
-      "Jan 8" => [
-
-      ],
-      "Jan 9" => [],
-      "Jan 10" => [
-        { title: "Team meeting", doctor: "None", time: "08:00 - 09:00" }
-      ],
-      "Jan 11" => [
-      ],
-      "Jan 12" => [],
-      "Jan 13" => [],
-    },
-    9 => {
-      "Jan 7" => [],
-      "Jan 8" => [
-        { title: "Work on project", doctor: "None", time: "09:00 - 10:00" }
-      ],
-      "Jan 9" => [
-        { title: "Check emails", doctor: "None", time: "09:00 - 09:30" }
-      ],
-      "Jan 10" => [],
-      "Jan 11" => [
-        { title: "Conference call", doctor: "None", time: "09:00 - 10:00" }
-      ],
-      "Jan 12" => [
-        { title: "Work on project", doctor: "None", time: "09:00 - 10:00" }
-      ],
-      "Jan 13" => [],
-    },
-    10 => {
-      "Jan 7" => [
-      ],
-      "Jan 8" => [
-        { title: "Work on project", doctor: "None", time: "10:00 - 11:00" }
-      ],
-      "Jan 9" => [
-      ],
-      "Jan 10" => [
-        { title: "Conference call", doctor: "None", time: "10:00 - 11:00" }
-      ],
-      "Jan 11" => [],
-      "Jan 12" => [
-      ],
-      "Jan 13" => [],
-    },
-    11 => {
-      "Jan 7" => [
-        { title: "Lunch with Sarah", doctor: "None", time: "11:00 - 12:00" }
-      ],
-      "Jan 8" => [
-      ],
-      "Jan 9" => [],
-      "Jan 10" => [],
-      "Jan 11" => [
-        { title: "Work on presentation", doctor: "None", time: "11:00 - 12:00" }
-      ],
-      "Jan 12" => [
-        { title: "Lunch", doctor: "None", time: "11:00 - 12:00" }
-      ],
-      "Jan 13" => [],
-    },
-    12 => {
-      "Jan 7" => [],
-      "Jan 8" => [
-        { title: "Work on report", doctor: "None", time: "12:00 - 13:00" }
-      ],
-      "Jan 9" => [
-        { title: "Lunch with John", doctor: "None", time: "12:00 - 13:00" }
-      ],
-      "Jan 10" => [],
-      "Jan 11" => [
-      ],
-      "Jan 12" => [],
-      "Jan 13" => [
-      ],
-    },
-    13 => {
-      "Jan 7" => [],
-      "Jan 8" => [],
-      "Jan 9" => [
-        { title: "Team meeting", doctor: "None", time: "13:00 - 14:00" }
-      ],
-      "Jan 10" => [
-      ],
-      "Jan 11" => [
-      ],
-      "Jan 12" => [
-        { title: "Work on presentation", doctor: "None", time: "13:00 - 14:00" }
-      ],
-      "Jan 13" => [],
-    },
-    14 => {
-      "Jan 7" => [
-        { title: "Call with Sarah", doctor: "None", time: "14:00 - 14:30" }
-      ],
-      "Jan 8" => [
-        { title: "Work on project", doctor: "None", time: "14:00 - 15:00" }
-      ],
-      "Jan 9" => [
-      ],
-      "Jan 10" => [
-      ],
-      "Jan 11" => [],
-      "Jan 12" => [
-
-      ],
-      "Jan 13" => [],
-    },
-    15 => {
-      "Jan 7" => [
-        { title: "Call with John", doctor: "None", time: "15:00 - 15:30" }
-      ],
-      "Jan 8" => [
-      ],
-      "Jan 9" => [
-        { title: "Meeting with client", doctor: "None", time: "15:00 - 16:00" }
-      ],
-      "Jan 10" => [],
-      "Jan 11" => [
-      ],
-      "Jan 12" => [
-      ],
-      "Jan 13" => [],
-    },
-    16 => {
-      "Jan 7" => [
-        { title: "Team meeting", doctor: "None", time: "16:00 - 17:00" }
-      ],
-      "Jan 8" => [
-      ],
-      "Jan 9" => [
-      ],
-      "Jan 10" => [
-        { title: "Lunch break", doctor: "None", time: "16:00 - 17:00" }
-      ],
-      "Jan 11" => [],
-      "Jan 12" => [
-        { title: "Work on project", doctor: "None", time: "16:00 - 17:00" }
-      ],
-      "Jan 13" => [],
-    },
-    17 => {
-      "Jan 7" => [
-      ],
-      "Jan 8" => [],
-      "Jan 9" => [
-        { title: "Call with Sarah", doctor: "None", time: "17:00 - 18:00" }
-      ],
-      "Jan 10" => [
-      ],
-      "Jan 11" => [
-        { title: "Work on project", doctor: "None", time: "17:00 - 18:00" }
-      ],
-      "Jan 12" => [],
-      "Jan 13" => [],
-    },
-    18 => {
-      "Jan 7" => [],
-      "Jan 8" => [
-        { title: "Team meeting", doctor: "None", time: "18:00 - 19:00" }
-      ],
-      "Jan 9" => [
-        { title: "Work on report", doctor: "None", time: "18:00 - 19:00" }
-      ],
-      "Jan 10" => [],
-      "Jan 11" => [
-        { title: "Work on presentation", doctor: "None", time: "18:00 - 19:00" }
-      ],
-      "Jan 12" => [],
-      "Jan 13" => [
-      ],
-    },
-}
-  %>
 <%= render partial: "/admin/shared/sidebar", locals: {tab: 'appointments'} %>
-<div class="mt-20 sm:ml-64"
+<div class="mt-20 md:ml-64"
 data-controller="new-appointment-modal">
   <%= render partial: "new", locals: {} %>
   <div class="px-6 py-1">
@@ -243,21 +38,21 @@ data-controller="new-appointment-modal">
   <section class="py-12 relativebg-stone-50">
     <div class="w-full px-6 mx-auto overflow-x-auto max-w-7xl lg:px-8">
       <div class="relative ">
-        <div class="sticky top-0 left-0 grid w-full grid-cols-8 border-t border-gray-200">
-          <div class="p-3.5 flex items-center justify-center text-sm font-medium text-gray-900 empty-cell"></div>
-          <% weekdates.each do |day|  %>
+        <div class=" left-0 grid w-full grid-cols-[min-content,repeat(7,1fr)] border-t border-gray-200">
+          <div class="p-3.5 flex items-center justify-center text-sm font-medium text-gray-900 empty-cell">Time</div>
+          <% @dates.each do |day|  %>
             <div class="p-3.5 flex items-center justify-center text-sm font-medium  text-indigo-900"><%="#{day[:day]} #{day[:date]}"%></div>
           <%end%>
         </div>
-        <div class="hidden w-full grid-cols-8 overflow-x-auto sm:grid">
+        <div class=" w-full grid-cols-[min-content,repeat(7,1fr)] overflow-x-auto sm:grid">
           <% (7..18).each do |hour| %>
-            <div class="h-32 lg:h-28 p-0.5 md:p-3.5   border-t border-r border-gray-200 flex items-end transition-all hover:bg-stone-100">
+            <div class="h-32 lg:h-28 p-0.5 md:p-3.5 border-t border-r border-gray-200 flex items-end transition-all hover:bg-stone-100">
               <span class="text-xs font-semibold text-gray-400"><%= "#{hour}:00" %></span>
             </div>
-            <% weekdates.each do |day| %>
+            <% @dates.each do |day| %>
               <div class="h-32 lg:h-28 p-0.5 overflow-auto md:p-3.5 border-t border-r border-gray-200 transition-all hover:bg-stone-100">
-                <% if appointments[hour] && appointments[hour][day[:date]].present? %>
-                  <% appointments[hour][day[:date]].each do |appointment| %>
+                <% if @appointments[hour] && @appointments[hour][day[:date]].present? %>
+                  <% @appointments[hour][day[:date]].each do |appointment| %>
                     <%= render partial: "/admin/appointments/appointment", locals: { appointment: appointment  } %>
                   <%end%>
                 <% end %>
