@@ -2,8 +2,11 @@ module Admin
   class AppointmentsController < BaseController
     before_action :load_doctors
     def index
-      @appointments = Appointment.all
       @appointment = Appointment.new
+
+      query = Admin::AppointmentQuery.new(Time.zone.today - 6.days, @current_clinic.id)
+      @appointments = query.fetch_appointments_for_week
+      @dates = query.weekdates
     end
 
     def new

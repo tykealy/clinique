@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'admin/sessions' }, path: 'admin',
-                     path_names: { sign_in: '/sign_in' }
+  devise_for :users, controllers: {
+    sessions: 'admin/sessions'
+  }, path: 'admin', path_names: { sign_in: '/sign_in' }
   # devise_for :users, controllers: {
   #       sessions: "api/v1/sessions"
   #     }, path: "admin", path_names: { sign_in: "sign_in", sign_out: "sign_out" }
