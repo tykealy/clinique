@@ -3,7 +3,7 @@ class Appointment < ApplicationRecord
   belongs_to :doctor
   belongs_to :clinic
 
-  enum :status, { pending: 0, confirmed: 1, canceled: 2 }
+  enum :status, { pending: 0, confirmed: 1, cancelled: 2 }
 
   def fetch_appointments_for_week(start_date)
     end_date = start_date + 6.days

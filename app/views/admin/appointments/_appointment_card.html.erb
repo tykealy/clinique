@@ -1,5 +1,5 @@
 <div  data-appointment-card-target="appointmentCard">
-  <div class="fixed inset-0 z-50 flex items-center justify-center ml-64 bg-black bg-opacity-10">
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black md:ml-64 bg-opacity-10">
     <!-- Card Container -->
     <div class="relative w-full max-w-md p-6 pb-3 overflow-auto bg-white rounded-lg shadow-lg">
       <!-- Close button (optional) -->
@@ -76,7 +76,11 @@
         <button 
          data-action="click->appointment-card#close"
           class="px-4 py-1 text-gray-800 bg-gray-200 rounded-md hover:bg-gray-300">Close</button>
-        <button class="px-4 py-1 text-white rounded-md bg-primary hover:bg-secondary">Edit</button>
+        <button class="px-4 py-1 text-white rounded-md bg-primary hover:bg-secondary"
+          data-action="click->appointment-form-modal#edit"
+          data-appointment-form-modal-target="editButton"
+          data-appointment-id= "<%= appointment[:id] %>"
+          >Edit</button>
       </div>
     </div>
   </div>
