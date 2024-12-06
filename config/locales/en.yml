@@ -49,3 +49,4 @@ en:
     pending: "Pending"
     confirmed: "Confirmed"
     unavailable: "Unavailable"
+    cancelled: "Cancelled"

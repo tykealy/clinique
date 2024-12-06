@@ -1,9 +1,9 @@
 <%= render partial: "/admin/shared/sidebar", locals: {tab: 'appointments'} %>
 <div class="mt-20 md:ml-64"
-data-controller="new-appointment-modal appointment-card">
-  <%= render partial: "new", locals: {} %>
-  <div data-appointment-card-target="appointmentCard" >
+data-controller="appointment-form-modal appointment-card">
+  <div data-appointment-card-target="appointmentCard" data-appointment-form-modal-target="appointmentCard" >
   </div>
+  <div data-appointment-form-modal-target="form"></div>
   <div class="px-6 py-1">
     <ul class="flex items-center justify-around">
       <li class="flex-1 ">
@@ -11,8 +11,8 @@ data-controller="new-appointment-modal appointment-card">
       </li>
       <li>
         <button 
-          data-action="click->new-appointment-modal#toggleModal"
-          data-new-appointment-modal-target="button"
+          data-action="click->appointment-form-modal#toggleModal"
+          data-appointment-form-modal-target="button"
           class=" hover:bg-secondary py-2.5 pr-7 pl-5 rounded-xl flex items-center gap-2 text-base font-semibold text-white transition-all duration-300 bg-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M10 5V15M15 10H5" stroke="white" stroke-width="1.6" stroke-linecap="round"></path>

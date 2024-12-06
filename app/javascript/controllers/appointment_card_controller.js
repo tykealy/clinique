@@ -3,8 +3,6 @@ export default class extends Controller {
   static targets = [ "appointmentCard"];
 
   async show(e){
-    // Add your logic to show the appointment details
-    console.log(this.appointmentCardTarget);
     const id = e.target.dataset.appointmentId;
     const response = await fetch(`/admin/appointments/${id}`);
 
