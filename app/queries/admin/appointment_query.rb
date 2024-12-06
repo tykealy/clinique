@@ -19,6 +19,7 @@ module Admin
         hour = appointment.date.hour
         day = appointment.date.strftime('%b %d') # Format as "Jan 7"
         calendar[hour][day] << {
+          id: appointment.id,
           title: appointment.title,
           doctor: appointment.doctor,
           time: appointment.date.strftime('%H:%M - %H:%M')

@@ -9,6 +9,11 @@ module Admin
       @dates = query.weekdates
     end
 
+    def show
+      @appointment = Appointment.find(params[:id])
+      render partial: 'appointment_card', locals: { appointment: @appointment }
+    end
+
     def new
       @appointment = Appointment.new
     end
@@ -33,7 +38,7 @@ module Admin
     def combine_date_time(date, time)
       return unless date && time
 
-      DateTime.parse("#{date} #{time}:00")
+      DateTime.parse(" # {date} #{time}:00")
     end
 
     def appointment_params

@@ -45,3 +45,7 @@ en:
     profile: "Profile Picture"
   clinic:
     logo: "Logo Picture"
+  appointment:
+    pending: "Pending"
+    confirmed: "Confirmed"
+    unavailable: "Unavailable"

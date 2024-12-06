@@ -1,0 +1,83 @@
+<div  data-appointment-card-target="appointmentCard">
+  <div class="fixed inset-0 z-50 flex items-center justify-center ml-64 bg-black bg-opacity-10">
+    <!-- Card Container -->
+    <div class="relative w-full max-w-md p-6 pb-3 overflow-auto bg-white rounded-lg shadow-lg">
+      <!-- Close button (optional) -->
+      <button class="absolute text-gray-500 top-4 right-4 hover:text-gray-700" aria-label="Close" data-action="click->appointment-card#close">
+        <!-- X icon -->
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <!-- Card Content -->
+      <div class="mb-4">
+        <!-- Clinic Logo & Title -->
+        <div class="flex items-center mb-4">
+          <% if appointment.clinic.logo.attached? %>
+            <img src="<%= url_for(appointment.clinic.logo) %>" alt="clinic logo Picture" class="object-cover w-8 h-8 mr-4 rounded-full">
+          <% else %>
+            <div class="w-8 h-8 mr-2 bg-gray-300 rounded-full"></div>
+          <% end %>
+          <!-- Title -->
+          <h2 class="text-xl font-bold text-gray-800"><%= appointment.title %></h2>
+        </div>
+        <!-- Date & Time -->
+        <div class="flex items-center mb-2 text-sm text-gray-600">
+          <svg class="w-4 h-4 mr-1 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 4h10M3 8h18M5 12h14M5 16h14"></path>
+          </svg>
+          <span><%= appointment.date.strftime("%B %d, %Y %I:%M %p") %></span>
+        </div>
+        <!-- Status -->
+        <div class="flex items-center mb-4 text-sm text-gray-600">
+          <svg class="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 10-1.414 1.414L9 13.414l4.707-4.707z"/>
+          </svg>
+          <span><%=  I18n.t("appointment.#{appointment.status}")%></span>
+        </div>
+        <!-- Doctor Info -->
+        <% if appointment.doctor.present? %>
+          <div class="flex items-center mb-2 text-sm text-gray-600">
+            <% if appointment.doctor.profile.attached? %>
+              <img src="<%= url_for(appointment.doctor.profile) %>" alt="Doctor Profile Picture" class="object-cover w-8 h-8 mr-2 rounded-full">
+            <% else %>
+              <div class="w-8 h-8 mr-2 bg-gray-300 rounded-full"></div>
+            <% end %>
+            <span><strong>Doctor:</strong> <%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %></span>
+          </div>
+        <% else %>
+          <div class="flex items-center mb-2 text-sm text-gray-600">
+            <span>No assigned doctor</span>
+          </div>
+        <% end %>
+        <!-- Patient Info -->
+        <% if appointment.patient.present? %>
+          <div class="flex items-center mb-4 text-sm text-gray-600">
+            <% if appointment.patient.profile.attached? %>
+              <img src="<%= url_for(appointment.patient.profile) %>" alt="Patient Profile Picture" class="object-cover w-8 h-8 mr-2 rounded-full">
+            <% else %>
+              <div class="w-8 h-8 mr-2 bg-gray-300 rounded-full"></div>
+            <% end %>
+            <span><strong>Patient:</strong> <%= appointment.patient.first_name %> <%= appointment.patient.last_name %></span>
+          </div>
+        <% else %>
+          <div class="flex items-center mb-2 text-sm text-gray-600">
+            <span>No assigned patient</span>
+          </div>
+        <% end %>
+        <!-- Description -->
+        <div class="mb-2 overflow-auto text-sm text-gray-700 max-h-44">
+          <span class="font-semibold">Description:</span>
+          <p class="mt-1"><%= appointment.description %></p>
+        </div>
+      </div>
+      <!-- Footer/Actions -->
+      <div class="flex justify-end px-4 py-2 space-x-2 rounded-lg bg-gray-50 sm:px-6">
+        <button 
+         data-action="click->appointment-card#close"
+          class="px-4 py-1 text-gray-800 bg-gray-200 rounded-md hover:bg-gray-300">Close</button>
+        <button class="px-4 py-1 text-white rounded-md bg-primary hover:bg-secondary">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
