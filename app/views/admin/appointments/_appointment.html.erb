@@ -1,4 +1,7 @@
-<div class="rounded p-1.5 border-l-2 border-purple-600 bg-purple-50 mb-2 overflow-auto">
-  <p class="mb-px text-xs font-normal text-gray-900"><%= appointment[:title] %></p>
-  <p class="text-xs font-semibold text-purple-600"><%= appointment[:doctor].full_name %> </p>
+<div class="rounded p-1.5 border-l-2 border-purple-600 bg-purple-50 mb-2 overflow-auto"
+  data-appointment-id= "<%= appointment[:id] %>"
+  data-action="click->appointment-card#show"
+  >
+  <p class="mb-px text-xs font-normal text-gray-900" data-appointment-id= "<%= appointment[:id] %>"><%= appointment[:title] %></p>
+  <p class="text-xs font-semibold text-purple-600" data-appointment-id= "<%= appointment[:id] %>"><%= appointment[:doctor].full_name %></p>
 </div>

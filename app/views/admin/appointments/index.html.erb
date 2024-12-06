@@ -1,7 +1,9 @@
 <%= render partial: "/admin/shared/sidebar", locals: {tab: 'appointments'} %>
 <div class="mt-20 md:ml-64"
-data-controller="new-appointment-modal">
+data-controller="new-appointment-modal appointment-card">
   <%= render partial: "new", locals: {} %>
+  <div data-appointment-card-target="appointmentCard" >
+  </div>
   <div class="px-6 py-1">
     <ul class="flex items-center justify-around">
       <li class="flex-1 ">
