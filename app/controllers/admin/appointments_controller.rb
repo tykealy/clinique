@@ -14,11 +14,13 @@ module Admin
 
     def new
       @appointment = Appointment.new
+      @patients = []
       render partial: 'new', locals: { appointment: @appointment }
     end
 
     def edit
       @appointment = Appointment.find(params[:id])
+      @patients = Patient.where(id: @appointment.patient_id)
       render partial: 'edit', locals: { appointment: @appointment }
     end
 
