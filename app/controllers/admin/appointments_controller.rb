@@ -2,7 +2,9 @@ module Admin
   class AppointmentsController < BaseController
     before_action :load_doctors
     def index
-      query = Admin::AppointmentQuery.new(Time.zone.today - 6.days, @current_clinic.id)
+      start_date = params[:selected_date].present? ? params[:selected_date].to_date.beginning_of_week : Time.zone.today.beginning_of_week
+      query = Admin::AppointmentQuery.new(start_date, @current_clinic.id)
+      @selected_date = params[:selected_date].present? ? params[:selected_date].to_date : Time.zone.today
       @appointments = query.fetch_appointments_for_week
       @dates = query.weekdates
     end
@@ -63,6 +65,10 @@ module Admin
 
     def appointment_params
       params.require(:appointment).permit(:doctor_id, :patient_id, :date, :time_hour, :time, :description, :status, :title)
+    end
+
+    def filter_params
+      params.permit(:doctor_id, :status, :selected_date)
     end
 
     def load_doctors
