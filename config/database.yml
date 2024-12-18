@@ -28,12 +28,12 @@ test:
 production:
   primary:
     <<: *default
-    database: clinique_production
+    database: <%= ENV['DB_NAME'] %>
     username: <%= ENV['DB_USERNAME'] %>
     password: <%= ENV['DB_PASSWORD'] %>
   primary_replica:
     <<: *default
-    database: clinique_production_replica
+    database: <%= ENV['DB_NAME'] %>
     username: <%= ENV['DB_USERNAME'] %>
     password: <%= ENV['DB_PASSWORD'] %>
     replica: true
