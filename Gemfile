@@ -59,6 +59,10 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'dotenv-rails', groups: %i[development test]
+
+gem 'aws-sdk-s3'
+
 gem 'pg', '~> 1.5'
 
 gem 'devise', '~> 4.9'
