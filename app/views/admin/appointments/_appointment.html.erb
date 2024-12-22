@@ -8,6 +8,6 @@
     <%= appointment[:title] %>
   </p>
   <p class=" <%= f_color %> text-xs font-semibold " data-appointment-id="<%= appointment[:id] %>">
-    <%= appointment[:patient].full_name %>
+    <%= appointment[:patient]&.full_name %>
   </p>
 </div>

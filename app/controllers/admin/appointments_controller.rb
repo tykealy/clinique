@@ -37,7 +37,6 @@ module Admin
         redirect_to admin_appointments_path
       else
         flash[:danger] = I18n.t('flash.danger')
-        render :new
       end
     end
 
