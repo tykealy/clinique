@@ -2,6 +2,8 @@ class Doctor < ApplicationRecord
   belongs_to :clinic
   belongs_to :user
 
+  store :preferences, accessors: %i[font_color bg_color], coder: JSON
+
   has_many :appointments
   has_one_attached :profile
   validates :first_name, :phone_number, presence: true

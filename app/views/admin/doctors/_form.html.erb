@@ -54,12 +54,22 @@
     <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
     <%= f.email_field :email, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
   </div>
-  <div class="w-full">
-    <%= f.label :address, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_field :address, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
-  </div>
-  <div class="w-full">
-    <%= f.label :age, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_field :age, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
+  <div class="grid grid-cols-4 col-span-2 gap-4">
+    <div>
+      <%= f.label :address, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :address, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
+    </div>
+    <div>
+      <%= f.label :age, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :age, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
+    </div>
+    <div>
+      <%= f.label :font_color, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :font_color, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
+    </div>
+    <div>
+      <%= f.label :bg_color, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :bg_color, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" %>
+    </div>
   </div>
 </div>
