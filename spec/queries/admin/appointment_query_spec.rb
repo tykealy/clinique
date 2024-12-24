@@ -20,7 +20,7 @@ module Admin
         (0..6).each do |day_offset|
           date = (start_date + day_offset.days)
           hour = date.hour
-          day = date.strftime('%b %d')
+          day = date.to_date
           expect(result[hour][day]).not_to be_empty
         end
 
@@ -34,13 +34,13 @@ module Admin
         query = AppointmentQuery.new(start_date, clinic.id)
         result = query.weekdates
         expect(result).to eq([
-          { date: 'Jan 01', day: 'Mon' },
-          { date: 'Jan 02', day: 'Tue' },
-          { date: 'Jan 03', day: 'Wed' },
-          { date: 'Jan 04', day: 'Thu' },
-          { date: 'Jan 05', day: 'Fri' },
-          { date: 'Jan 06', day: 'Sat' },
-          { date: 'Jan 07', day: 'Sun' }
+          { date: start_date, day: 'Mon', display_date: 'Jan 01' },
+          { date: start_date + 1.day, day: 'Tue', display_date: 'Jan 02' },
+          { date: start_date + 2.days, day: 'Wed', display_date: 'Jan 03' },
+          { date: start_date + 3.days, day: 'Thu', display_date: 'Jan 04' },
+          { date: start_date + 4.days, day: 'Fri', display_date: 'Jan 05' },
+          { date: start_date + 5.days, day: 'Sat', display_date: 'Jan 06' },
+          { date: start_date + 6.days, day: 'Sun', display_date: 'Jan 07' }
         ])
       end
     end

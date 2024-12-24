@@ -17,7 +17,7 @@ module Admin
 
       appointments.each do |appointment|
         hour = appointment.date.hour
-        day = appointment.date.strftime('%b %d') # Format as "Jan 7"
+        day = appointment.date.to_date
         calendar[hour][day] << {
           id: appointment.id,
           title: appointment.title,
@@ -33,7 +33,11 @@ module Admin
     def weekdates
       (0..6).map do |i|
         date = @start_date + i.days
-        { date: date.strftime('%b %d'), day: date.strftime('%a') }
+        {
+          date: date, # Store as a full Date object
+          display_date: date.strftime('%b %d'), # For display purposes
+          day: date.strftime('%a')
+        }
       end
     end
   end
