@@ -15,7 +15,10 @@ module Admin
     end
 
     def new
+      @date = params[:date]
+      @time_hour = params[:time_hour]
       @appointment = Appointment.new
+      @appointment.date = combine_date_time(@date, @time_hour)
       @patients = []
       render partial: 'new', locals: { appointment: @appointment }
     end
@@ -34,7 +37,7 @@ module Admin
       @appointment.clinic_id = @current_clinic.id
       if @appointment.save
         flash[:success] = I18n.t('flash.success')
-        redirect_to admin_appointments_path
+        redirect_to admin_appointments_path(selected_date: @appointment.date)
       else
         flash[:danger] = I18n.t('flash.danger')
       end
@@ -47,8 +50,7 @@ module Admin
       combined_date_time = combine_date_time(date, time)
       if @appointment.update(appointment_params.except(:time_hour))
         @appointment.update(date: combined_date_time)
-        flash[:success] = I18n.t('flash.success')
-        redirect_to admin_appointments_path
+        redirect_to admin_appointments_path(selected_date: @appointment.date)
       else
         flash[:danger] = I18n.t('flash.danger')
       end

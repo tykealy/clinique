@@ -40,7 +40,7 @@ data-controller="appointment-form-modal appointment-card">
     </div>
     <div class="flex items-center gap-px p-1 rounded-lg">
       <%= form_with url: admin_appointments_path, method: :get, local: true do %>
-        <%= date_field_tag :selected_date, Time.zone.today, class: "focus:ring-primary focus:border-primary  rounded-lg py-2.5 px-5 text-sm font-medium text-gray-500 transition-all duration-300 hover:bg-white hover:text-secondary bg-white" %>
+        <%= date_field_tag :selected_date, @selected_date, class: "focus:ring-primary focus:border-primary  rounded-lg py-2.5 px-5 text-sm font-medium text-gray-500 transition-all duration-300 hover:bg-white hover:text-secondary bg-white" %>
         <%= submit_tag "Go", class: "ml-2 rounded-lg py-2.5 px-5 text-sm font-medium text-white transition-all duration-300 bg-primary hover:bg-secondary" %>
       <% end %>
     </div>
@@ -59,7 +59,7 @@ data-controller="appointment-form-modal appointment-card">
         <div class=" left-0 grid w-full grid-cols-[min-content,repeat(7,1fr)] border-t border-gray-200">
           <div class="p-3.5 flex items-center justify-center text-sm font-medium text-gray-900 empty-cell">Time</div>
           <% @dates.each do |day|  %>
-            <div class="p-3.5 flex items-center justify-center text-sm font-medium <%= 'text-secondary' if day[:date] == @selected_date.strftime("%b %d") %> "><%="#{day[:day]} #{day[:date]}"%></div>
+            <div class="p-3.5 flex items-center justify-center text-sm font-medium <%= 'text-secondary' if day[:display_date] == @selected_date.strftime("%b %d") %> "><%="#{day[:day]} #{day[:display_date]}"%></div>
           <%end%>
         </div>
         <div class=" w-full grid-cols-[min-content,repeat(7,1fr)] overflow-x-auto sm:grid">
@@ -68,7 +68,12 @@ data-controller="appointment-form-modal appointment-card">
               <span class="text-xs font-semibold text-gray-400"><%= "#{hour}:00" %></span>
             </div>
             <% @dates.each do |day| %>
-              <div class="h-32 lg:h-28 p-0.5 overflow-auto md:p-3.5 border-t border-r border-gray-200 transition-all hover:bg-stone-100">
+              <div 
+                data-action="click->appointment-form-modal#toggleNewModal"
+                data-appointment-form-modal-target="button"
+                data-date="<%= day[:date] %>"
+                data-time="<%= hour %>"
+                class="h-32 lg:h-28 p-0.5 overflow-auto md:p-3.5 border-t border-r border-gray-200 transition-all hover:bg-stone-100" >
                 <% if @appointments[hour] && @appointments[hour][day[:date]].present? %>
                   <% @appointments[hour][day[:date]].each do |appointment| %>
                     <%= render partial: "/admin/appointments/appointment", locals: { appointment: appointment  } %>

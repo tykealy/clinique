@@ -15,6 +15,18 @@ export default class extends Controller {
     }
   }
 
+  async toggleNewModal(e) {
+    const date = e.currentTarget.dataset.date; // Get date from clicked column
+    const time_hour = e.currentTarget.dataset.time; // Get time from clicked column
+
+    const response = await fetch(`/admin/appointments/new?date=${date}&time_hour=${time_hour}`);  
+
+    if (response.ok) {
+      const data = await response.text();
+      this.formTarget.innerHTML = data;
+    }
+  }
+
   async edit(e){
     const id = e.target.dataset.appointmentId;
     const response = await fetch(`/admin/appointments/${id}/edit`);
