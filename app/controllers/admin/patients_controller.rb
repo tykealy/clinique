@@ -2,7 +2,13 @@ module Admin
   class PatientsController < BaseController
     before_action :load_patient, only: %i[edit update destroy]
     def index
-      @patients = Patient.page(params[:page]).per(10) # 10 patients per page
+      search = params[:query].to_s.strip
+      @patients = if params[:query].present?
+                    Patient.where('first_name ILIKE :search OR last_name ILIKE :search OR phone_number ILIKE :search', search: "#{search}%")
+                  else
+                    Patient.all
+                  end
+      @patients = @patients.page(params[:page]).per(15)
     end
 
     def new
