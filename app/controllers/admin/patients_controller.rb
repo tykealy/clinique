@@ -2,7 +2,7 @@ module Admin
   class PatientsController < BaseController
     before_action :load_patient, only: %i[edit update destroy]
     def index
-      @patients = Patient.all
+      @patients = Patient.page(params[:page]).per(10) # 10 patients per page
     end
 
     def new
@@ -14,9 +14,10 @@ module Admin
 
       patients = if search.present?
                    Patient
-                     .where('first_name ILIKE :search OR last_name ILIKE :search OR phone_number ILIKE :search', search: "%#{search}%")
+                     .where('first_name ILIKE :search OR last_name ILIKE :search OR phone_number ILIKE :search', search: "#{search}%")
                      .select(:id, :first_name, :last_name, :phone_number)
-                     .limit(10)
+                     .limit(5)
+                     .as_json(only: %i[id first_name last_name phone_number])
                  else
                    []
                  end

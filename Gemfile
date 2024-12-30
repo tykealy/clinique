@@ -76,3 +76,5 @@ gem 'byebug', '~> 11.1'
 gem 'tailwindcss-rails', '~> 3.0'
 
 gem 'faker', '~> 3.5'
+
+gem 'kaminari', '~> 1.2'

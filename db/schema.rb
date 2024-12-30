@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_22_135909) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_27_151856) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -98,6 +98,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_22_135909) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["first_name"], name: "index_patients_on_first_name"
+    t.index ["last_name"], name: "index_patients_on_last_name"
+    t.index ["phone_number"], name: "index_patients_on_phone_number"
   end
 
   create_table "users", force: :cascade do |t|
