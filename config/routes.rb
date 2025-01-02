@@ -16,14 +16,8 @@ Rails.application.routes.draw do
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
   # Defines the root path route ("/")
 
-  root to: 'home#index'
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
-    namespace :api do
-      namespace :v1 do
-        resources :users
-        get '/patients', to: 'patients#index'
-      end
-    end
+    root to: 'home#index'
     namespace :admin do
       get '/', to: 'home#index'
       resources :users
@@ -35,6 +29,12 @@ Rails.application.routes.draw do
       resources :patients do
         get 'search', on: :collection
       end
+    end
+  end
+  namespace :api do
+    namespace :v1 do
+      resources :users
+      get '/patients', to: 'patients#index'
     end
   end
 end
