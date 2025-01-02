@@ -1,4 +1,4 @@
-<div data-controller="live-search" class="grid grid-cols-2 gap-3">
+<div data-controller="live-search appointment-form-modal" class="grid grid-cols-2 gap-3">
   <div class="mt-2">
     <%= f.label :title, "Title", class: "block text-sm font-medium text-gray-700" %>
     <%= f.text_field :title, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm", placeholder: "Appointment Title" %>
@@ -17,7 +17,7 @@
   </div>
   <div class="mt-2">
     <%= f.label :doctor_id, "Doctor", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.select :doctor_id, options_for_select(@doctors.map { |doctor| [doctor.full_name, doctor.id] }), 
+    <%= f.select :doctor_id, options_for_select(@doctors.map { |doctor| [doctor.full_name, doctor.id] },selected: @appointment.doctor_id), 
                 {}, 
                 class: "block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary", 
                 data: { action: "change->live-search#updateSelectedDoctor", live_search_target: "doctorSelect"  } %>

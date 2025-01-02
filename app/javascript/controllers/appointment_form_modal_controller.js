@@ -6,24 +6,19 @@ export default class extends Controller {
     this.containerTarget.classList.add("hidden");
   }
 
-  async toggleModal(e) {
-    const response = await fetch("/admin/appointments/new");
+  toggleNewModal(e) {
+    const date = e.currentTarget.dataset.date;
+    const timeHour = e.currentTarget.dataset.time; 
+    this.containerTarget.classList.remove("hidden");
 
-    if (response.ok) {
-      const data = await response.text();
-      this.formTarget.innerHTML = data;
+    const dateField = this.containerTarget.querySelector('input[type="date"]');
+    if (dateField) {
+      dateField.value = date || '';
     }
-  }
 
-  async toggleNewModal(e) {
-    const date = e.currentTarget.dataset.date; // Get date from clicked column
-    const time_hour = e.currentTarget.dataset.time; // Get time from clicked column
-
-    const response = await fetch(`/admin/appointments/new?date=${date}&time_hour=${time_hour}`);  
-
-    if (response.ok) {
-      const data = await response.text();
-      this.formTarget.innerHTML = data;
+    const timeHourField = this.containerTarget.querySelector('select[name$="[time_hour]"]');
+    if (timeHourField) {
+      timeHourField.value = timeHour || '';
     }
   }
 
