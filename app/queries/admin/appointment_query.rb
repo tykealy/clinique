@@ -23,7 +23,8 @@ module Admin
           title: appointment.title,
           doctor: appointment.doctor,
           patient: appointment.patient,
-          time: appointment.date.strftime('%H:%M - %H:%M')
+          time: appointment.date.strftime('%H:%M - %H:%M'),
+          status: appointment.status
         }
       end
 
