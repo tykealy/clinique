@@ -11,6 +11,7 @@ data-controller="appointment-form-modal appointment-card">
   <div data-appointment-card-target="appointmentCard" data-appointment-form-modal-target="appointmentCard" >
   </div>
   <div data-appointment-form-modal-target="form"></div>
+  <%= render partial: 'new', locals: {appointment: @appointment} %>
   <div class="px-6 py-1">
     <ul class="flex items-center justify-around">
       <li class="flex-1 ">

@@ -7,20 +7,13 @@ module Admin
       @selected_date = params[:selected_date].present? ? params[:selected_date].to_date : Time.zone.today
       @appointments = query.fetch_appointments_for_week
       @dates = query.weekdates
+      @patients = []
+      @appointment = Appointment.new
     end
 
     def show
       @appointment = Appointment.find(params[:id])
       render partial: 'appointment_card', locals: { appointment: @appointment }
-    end
-
-    def new
-      @date = params[:date]
-      @time_hour = params[:time_hour]
-      @appointment = Appointment.new
-      @appointment.date = combine_date_time(@date, @time_hour)
-      @patients = []
-      render partial: 'new', locals: { appointment: @appointment }
     end
 
     def edit
