@@ -3,9 +3,9 @@
   <% border = "border-red-400" %>
   <% f_color = "text-red-400" %>
 <% else %>
-  <% color = "bg-#{appointment[:doctor].bg_color}" %>
-  <% border = "border-#{appointment[:doctor].font_color}" %>
-  <% f_color = "text-#{appointment[:doctor].font_color}" %>
+  <% color = "bg-#{appointment[:bg_color]}" %>
+  <% border = "border-#{appointment[:font_color]}" %>
+  <% f_color = "text-#{appointment[:font_color]}" %>
 <% end %>
 <div class="<%= color %> <%= border %> rounded p-1.5 border-l-2 mb-2 overflow-auto ">
   <div
@@ -16,7 +16,7 @@
       <%= appointment[:title] %>
     </p>
     <p class=" <%= f_color %> text-xs font-semibold " data-appointment-id="<%= appointment[:id] %>">
-      <%= appointment[:patient]&.full_name %>
+      <%= appointment[:patient] %>
     </p>
   </div>
 </div>
