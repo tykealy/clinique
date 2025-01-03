@@ -2,7 +2,7 @@ class Doctor < ApplicationRecord
   belongs_to :clinic
   belongs_to :user
 
-  store :preferences, accessors: %i[font_color bg_color], coder: JSON
+  store_accessor :preferences, :bg_color, :font_color
 
   has_many :appointments
   has_one_attached :profile
