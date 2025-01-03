@@ -17,16 +17,15 @@ module Admin
         query = AppointmentQuery.new(start_date, clinic.id)
         result = query.fetch_appointments_for_week
 
-        # (0..6).each do |day_offset|
-        #   date = (start_date + day_offset.days)
-        #   hour = date.hour
-        #   day = date.to_date
-        #   expect(result[hour][day]).not_to be_empty
-        # end
+        (0..6).each do |day_offset|
+          date = (start_date + day_offset.days)
+          hour = date.hour
+          day = date.to_date
+          expect(result[hour][day]).not_to be_empty
+        end
 
-        # outside_date = start_date + 7.days
-        # expect(result[outside_date.hour][outside_date.strftime('%b %d')]).to be_empty
-        p result
+        outside_date = start_date + 7.days
+        expect(result[outside_date.hour][outside_date.strftime('%b %d')]).to be_empty
       end
     end
 

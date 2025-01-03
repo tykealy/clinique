@@ -7,23 +7,24 @@ module Admin
 
     def fetch_appointments_for_week
       appointments = Appointment
-                     .joins('LEFT JOIN doctors ON appointments.doctor_id = doctors.id')
-                     .joins('LEFT JOIN patients ON appointments.patient_id = patients.id')
+                     .includes(:doctor, :patient)
                      .select(
                        "appointments.id AS appointment_id,
-                        appointments.title AS appointment_title,
-                        appointments.date AS appointment_date,
-                        appointments.status AS appointment_status,
-                        doctors.id AS doctor_id,
-                        doctors.preferences as doctor_preferences,
-                        patients.id AS patient_id,
-                        patients.first_name AS patient_firstname,
-                        patients.last_name AS patient_lastname"
+                       appointments.title AS appointment_title,
+                       appointments.date AS appointment_date,
+                       appointments.status AS appointment_status,
+                       doctors.id AS doctor_id,
+                       doctors.preferences as doctor_preferences,
+                       patients.id AS patient_id,
+                       patients.first_name AS patient_firstname,
+                       patients.last_name AS patient_lastname"
                      )
                      .where(
                        date: @start_date.beginning_of_day..(@start_date + 6.days).end_of_day,
                        clinic_id: @clinic_id
                      )
+                     .joins('LEFT JOIN doctors ON appointments.doctor_id = doctors.id')
+                     .joins('LEFT JOIN patients ON appointments.patient_id = patients.id')
 
       calendar = Hash.new { |h, k1| h[k1] = Hash.new { |h1, k2| h1[k2] = [] } }
 
