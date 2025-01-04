@@ -9,6 +9,7 @@ export default class extends Controller {
   toggleNewModal(e) {
     const date = e.currentTarget.dataset.date;
     const timeHour = e.currentTarget.dataset.time; 
+    this.formTarget.innerHTML = "";
     this.containerTarget.classList.remove("hidden");
 
     const dateField = this.containerTarget.querySelector('input[type="date"]');

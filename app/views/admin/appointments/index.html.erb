@@ -1,5 +1,6 @@
 <%= render partial: "/admin/shared/sidebar", locals: {tab: 'appointments'} %>
 <% today =  Time.zone.today %>
+<% new_appointment = Appointment.new %>
 <div class="hidden text-purple-600 bg-purple-600 border-purple-600 "></div>
 <div class="hidden bg-[#e4eae6] text-secondary border-secondary "></div>
 <div class="hidden bg-secondary"></div>
@@ -11,7 +12,7 @@ data-controller="appointment-form-modal appointment-card">
   <div data-appointment-card-target="appointmentCard" data-appointment-form-modal-target="appointmentCard" >
   </div>
   <div data-appointment-form-modal-target="form"></div>
-  <%= render partial: 'new', locals: {appointment: @appointment} %>
+  <%= render partial: 'new', locals: {appointment: new_appointment} %>
   <div class="px-6 py-1">
     <ul class="flex items-center justify-around">
       <li class="flex-1 ">

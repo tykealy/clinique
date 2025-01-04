@@ -8,7 +8,6 @@ module Admin
       @appointments = query.fetch_appointments_for_week
       @dates = query.weekdates
       @patients = []
-      @appointment = Appointment.new
     end
 
     def show

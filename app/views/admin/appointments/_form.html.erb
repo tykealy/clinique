@@ -5,19 +5,19 @@
   </div>
   <div class="mt-2">
     <%= f.label :status, "Status", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.select :status, options_for_select(Appointment.statuses.keys.map { |status| [status.humanize, status] }, @appointment.status), {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" %>
+    <%= f.select :status, options_for_select(Appointment.statuses.keys.map { |status| [status.humanize, status] }, appointment.status), {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" %>
   </div>
   <div class="mt-2">
     <%= f.label :date, "Date", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.date_field :date, value: (@appointment.date&.strftime("%Y-%m-%d") || Time.zone.today.strftime("%Y-%m-%d")), class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" %>
+    <%= f.date_field :date, value: (appointment.date&.strftime("%Y-%m-%d") || Time.zone.today.strftime("%Y-%m-%d")), class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" %>
   </div>
   <div class="mt-2">
     <%= f.label :time_hour, "Time", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.select :time_hour, options_for_select((7..18).map { |hour| ["#{hour}:00", hour] }, @appointment.date&.strftime("%H").to_i), {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" %>
+    <%= f.select :time_hour, options_for_select((7..18).map { |hour| ["#{hour}:00", hour] }, appointment.date&.strftime("%H").to_i), {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm" %>
   </div>
   <div class="mt-2">
     <%= f.label :doctor_id, "Doctor", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.select :doctor_id, options_for_select(@doctors.map { |doctor| [doctor.full_name, doctor.id] },selected: @appointment.doctor_id), 
+    <%= f.select :doctor_id, options_for_select(@doctors.map { |doctor| [doctor.full_name, doctor.id] },selected: appointment.doctor_id), 
                 {}, 
                 class: "block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary", 
                 data: { action: "change->live-search#updateSelectedDoctor", live_search_target: "doctorSelect"  } %>
@@ -27,12 +27,12 @@
     <input type="text" id="patient-search" 
     data-action="input->live-search#search" 
     autocomplete="off"
-    value="<%= @appointment.patient.full_name + " - " + @appointment.patient.phone_number  if @appointment.patient %>"
+    value="<%= appointment.patient.full_name + " - " + appointment.patient.phone_number  if appointment.patient %>"
     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary" 
     placeholder="Search for a patient" />
     <ul data-live-search-target="results" class="absolute hidden w-full mt-1 bg-white border rounded-md shadow-sm border-primary">
     </ul>
-    <%= f.select :patient_id, options_for_select(@patients.map { |patient| [patient.full_name, patient.id] }, @appointment.patient_id), 
+    <%= f.select :patient_id, options_for_select(@patients.map { |patient| [patient.full_name, patient.id] }, appointment.patient_id), 
                 {}, 
                 class: "hidden", 
                 data: { action: "change->live-search#updateSelectedPatient", live_search_target: "patientSelect"  } %>
