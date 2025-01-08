@@ -1,8 +1,9 @@
 module Admin
   class AppointmentQuery
-    def initialize(start_date, clinic_id)
+    def initialize(start_date, clinic_id, show_cancelled: false)
       @start_date = start_date
       @clinic_id = clinic_id
+      @show_cancelled = show_cancelled
     end
 
     def fetch_appointments_for_week
@@ -23,9 +24,10 @@ module Admin
                      .where(
                        date: @start_date.beginning_of_day..(@start_date + 6.days).end_of_day,
                        clinic_id: @clinic_id
+
                      )
-                     .joins('LEFT JOIN doctors ON appointments.doctor_id = doctors.id')
-                     .joins('LEFT JOIN patients ON appointments.patient_id = patients.id')
+                     .left_outer_joins(:doctor, :patient)
+      appointments = appointments.where.not(status: :cancelled) unless @show_cancelled
 
       calendar = Hash.new { |h, k1| h[k1] = Hash.new { |h1, k2| h1[k2] = [] } }
 

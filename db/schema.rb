@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_03_071744) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_08_075414) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -53,7 +53,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_03_071744) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["clinic_id", "date"], name: "index_appointments_on_clinic_id_and_date"
+    t.index ["clinic_id", "date", "status"], name: "index_appointments_on_clinic_id_date_status"
+    t.index ["clinic_id", "date"], name: "index_appointments_on_clinic_id_and_date_not_cancelled", where: "(status <> 2)"
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["patient_id"], name: "index_appointments_on_patient_id"
   end
