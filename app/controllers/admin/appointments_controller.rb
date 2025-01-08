@@ -2,9 +2,12 @@ module Admin
   class AppointmentsController < BaseController
     before_action :load_doctors
     def index
-      start_date = params[:selected_date].present? ? params[:selected_date].to_date.beginning_of_week : Time.zone.today.beginning_of_week
-      query = Admin::AppointmentQuery.new(start_date, @current_clinic.id)
       @selected_date = params[:selected_date].present? ? params[:selected_date].to_date : Time.zone.today
+      @show_cancelled = params[:show_cancelled] == '1'
+
+      start_date = params[:selected_date].present? ? params[:selected_date].to_date.beginning_of_week : Time.zone.today.beginning_of_week
+      query = Admin::AppointmentQuery.new(start_date, @current_clinic.id, show_cancelled: @show_cancelled)
+
       @appointments = query.fetch_appointments_for_week
       @dates = query.weekdates
       @patients = []
