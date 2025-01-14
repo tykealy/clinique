@@ -61,13 +61,14 @@ data-controller="appointment-form-modal appointment-card">
         <%= hidden_field_tag :selected_date, @selected_date %>
         <div class="flex items-center">
           <input 
-      id="show-cancelled-checkbox" 
-      type="checkbox" 
-      name="show_cancelled" 
-      value="1" 
-      <%= 'checked' if @show_cancelled %> 
-      class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary focus:ring-secondary focus:ring-2" 
-      data-action="change->filter-toggle#toggle">
+            id="show-cancelled-checkbox" 
+            type="checkbox" 
+            name="show_cancelled" 
+            value="1" 
+            <%= 'checked' if @show_cancelled %> 
+            class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary focus:ring-secondary focus:ring-2" 
+            data-action="change->filter-toggle#toggle"
+          >
           <label for="show-cancelled-checkbox" class="text-sm font-medium text-gray-900 cursor-pointer ms-2 ">
             <%= t('appointments.show_cancelled') %>
           </label>
