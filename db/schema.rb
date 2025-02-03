@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_08_075414) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_14_110310) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -85,6 +85,23 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_08_075414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "preferences", default: {}
+  end
+
+  create_table "health_conditions", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_health_conditions_on_name"
+  end
+
+  create_table "health_records", force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.integer "health_condition_id", null: false
+    t.string "value", default: "N/A"
+    t.integer "clinic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id", "health_condition_id"], name: "index_health_records_on_patient_id_and_health_condition_id"
   end
 
   create_table "patients", force: :cascade do |t|

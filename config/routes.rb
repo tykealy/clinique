@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       end
       resources :patients do
         get 'search', on: :collection
+        resources :health_records
       end
     end
   end
