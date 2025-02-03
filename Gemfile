@@ -73,7 +73,7 @@ gem 'rack-cors', '~> 2.0'
 
 gem 'byebug', '~> 11.1'
 
-gem 'tailwindcss-rails', '~> 3.2'
+gem 'tailwindcss-rails', '~> 4.0'
 
 gem 'faker', '~> 3.5'
 
