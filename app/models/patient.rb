@@ -3,6 +3,9 @@ class Patient < ApplicationRecord
   belongs_to :clinic
   has_one_attached :profile
 
+  has_many :health_records, dependent: :destroy
+  has_many :heath_conditions, through: :health_records
+
   validates :first_name, :phone_number, presence: true
   validates :phone_number, length: { minimum: 9, maximum: 15 }
   validates :first_name, length: { minimum: 1 }

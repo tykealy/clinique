@@ -7,6 +7,12 @@ module.exports = {
     "./app/javascript/**/*.js",
     "./app/views/**/*.{erb,haml,html,slim}",
   ],
+  safelist: [
+    "text-[#F0A04B]",
+    "bg-[#F0A04B]",
+    "border-[#F0A04B]",
+    "bg-[#FCE7C8]"
+  ],
   theme: {
     extend: {
       colors: {
