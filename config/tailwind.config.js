@@ -11,7 +11,11 @@ module.exports = {
     "text-[#F0A04B]",
     "bg-[#F0A04B]",
     "border-[#F0A04B]",
-    "bg-[#FCE7C8]"
+    "bg-[#FCE7C8]",
+    "text-purple-50", "bg-purple-50", "border-purple-50",
+    "text-purple-600", "bg-purple-600", "border-purple-600",
+    "text-blue-50", "bg-blue-50", "border-blue-50",
+    "text-blue-600", "bg-blue-600", "border-blue-600",
   ],
   theme: {
     extend: {
