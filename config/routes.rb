@@ -28,7 +28,10 @@ Rails.application.routes.draw do
       end
       resources :patients do
         get 'search', on: :collection
-        resources :health_records
+        resources :health_records do
+          get 'search', on: :collection
+          get 'value_search', on: :collection
+        end
       end
     end
   end

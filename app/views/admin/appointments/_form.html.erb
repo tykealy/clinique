@@ -30,8 +30,12 @@
     value="<%= appointment.patient.full_name + " - " + appointment.patient.phone_number  if appointment.patient %>"
     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary" 
     placeholder="Search for a patient" />
+    
+    <%# patient list place holder %>
     <ul data-live-search-target="results" class="absolute hidden w-full mt-1 bg-white border rounded-md shadow-sm border-primary">
     </ul>
+
+    <%# patient list options place holder %>
     <%= f.select :patient_id, options_for_select(@patients.map { |patient| [patient.full_name, patient.id] }, appointment.patient_id), 
                 {}, 
                 class: "hidden", 

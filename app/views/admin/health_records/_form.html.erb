@@ -1,24 +1,40 @@
+<input type="hidden" name="health_record[patient_id]" value="<%= @patient.id %>">
 
-  <input type="hidden" name="health_record[patient_id]" value="<%= @patient.id %>">
-
+<div class="relative w-full col-span-5 mt-1">
   <label for="new-condition" class="sr-only">Condition</label>
   <input id="new-condition" name="health_record[health_condition_name]" type="text"
-     class="block w-full col-span-5 mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
+    data-action="input->patient-health-records#conditionSearch"
+    data-patient-health-records-target="conditionInput"
+    data-patient-id="<%= @patient.id %>"
+    class="w-full border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
     placeholder="Enter condition name"
+    autocomplete="off"
     required />
 
+  <%# patient health record placeholder %>
+  <ul data-patient-health-records-target="conditionResults" class="absolute z-50 hidden w-full mt-1 bg-white border rounded-md shadow-sm border-primary">
+  </ul>
+</div>
+
+<div class="w-full col-span-5 mt-1">
   <label for="new-value" class="sr-only">Value</label>
   <input id="new-value" name="health_record[value]" type="text"
-    class="block w-full col-span-5 mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
+    class="w-full border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
     placeholder="Enter value"
+    data-patient-id="<%= @patient.id %>"
+    data-patient-health-records-target="conditionValueInput"
+    data-action="input->patient-health-records#conditionValueSearch"
     required />
-
-<div class="flex justify-end col-span-2 gap-4 mt-1 text-center md:mr-4">
-  <button type="submit" class="flex items-center justify-center gap-2 px-1 text-white rounded-md md:px-4 hover:bg-secondary bg-primary">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-      <path d="M12 5v14" />
-      <path d="M5 12h14" />
-    </svg>
-    <span class="leading-none">Add</span>
+</div>
+  
+<div class="flex justify-end col-span-2 gap-4 mt-1 text-center">
+  <button type="submit"class="flex items-center justify-center w-full gap-2 px-1 text-white rounded-md md:px-4 hover:bg-secondary bg-primary">
+    <span class="flex items-center gap-2" >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+        <path d="M12 5v14" />
+        <path d="M5 12h14" />
+      </svg>
+      <span class="items-center hidden leading-none sm:inline-flex">Add</span>
+    </span>
   </button>
 </div>

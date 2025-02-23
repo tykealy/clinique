@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["results", "patientSelect", "container"];
+  
   async search(event) {
     const query = event.target.value.trim();
 
