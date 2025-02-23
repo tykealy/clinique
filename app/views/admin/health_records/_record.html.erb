@@ -1,10 +1,7 @@
-
-<label for="patient-search-<%= record.id %>" class="sr-only">Search for a patient</label>
-<input id="patient-search-<%= record.id %>" type="text" 
+<input  type="text" 
   autocomplete="off"
   value="<%= record.health_condition.name %>"
   class="block w-full col-span-5 mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
-  placeholder="Search for a patient"
   disabled
   data-patient-health-records-target="conditionInput"
 />
@@ -12,29 +9,23 @@
   value="<%= record.value %>"
   class="block w-full col-span-5 mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
   disabled
-  data-patient-health-records-target="valueInput"
+  data-patient-health-records-target="conditionValueInput"
 />
-<div class="flex justify-end col-span-2 gap-4 text-center md:mr-4">
-    <button type="submit" class="rounded-lg hover:text-secondary text-primary">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-        <path d="M12 20h9" />
-        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
-        <path d="m15 5 3 3" />
+<div class="flex justify-end col-span-2 gap-4 mt-1 text-center">
+  <button class="flex items-center justify-center w-full gap-2 px-1 text-white bg-red-400 rounded-md md:px-4 hover:bg-red-700">
+      <%= link_to admin_patient_health_record_path(id: record.id, patient_id: record.patient.id),
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        }, class: "flex items-center gap-2" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+          <path d="M3 6h18" />
+          <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+          <path d="M10 11v6" />
+          <path d="M14 11v6" />
+          <path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14" />
       </svg>
-    </button>
-    <button class="text-red-400 rounded-lg hover:text-red-700">
-        <%= link_to admin_patient_health_record_path(id: record.id, patient_id: record.patient.id),
-          data: {
-            turbo_method: :delete,
-            turbo_confirm: "Are you sure?"
-          }, class: "" do%>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-            <path d="M3 6h18" />
-            <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-            <path d="M10 11v6" />
-            <path d="M14 11v6" />
-            <path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14" />
-        </svg>
-      <% end %>
-    </button>
+      <span class="items-center hidden leading-none sm:inline-flex">Delete</span>
+    <% end %>
+  </button>
 </div>

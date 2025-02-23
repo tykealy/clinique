@@ -6,6 +6,36 @@ module Admin
                                 .order(created_at: :desc)
     end
 
+    def search
+      search = params[:search].to_s.strip
+
+      conditions = if search.present?
+                     HealthCondition
+                       .where('name ILIKE :search', search: "#{search}%")
+                       .select(:name)
+                       .limit(5)
+                       .as_json(only: %i[name])
+                   else
+                     []
+                   end
+      render json: conditions
+    end
+
+    def value_search
+      search = params[:search].to_s.strip
+
+      condition_value = if search.present?
+                          HealthRecord
+                            .where('value ILIKE :search', search: "#{search}%")
+                            .select(:value)
+                            .limit(5)
+                            .as_json(only: %i[value])
+                        else
+                          []
+                        end
+      render json: condition_value
+    end
+
     def create
       params = health_record_params
       health_condition = HealthCondition.find_or_create_by(name: params[:health_condition_name])
