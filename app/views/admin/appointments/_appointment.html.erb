@@ -7,7 +7,7 @@
   <% border = "border-#{appointment[:font_color]}" %>
   <% f_color = "text-#{appointment[:font_color]}" %>
 <% end %>
-<div class="<%= color %> <%= border %> rounded p-1.5 border-l-2 mb-2 overflow-auto ">
+<button class="<%= color %> <%= border %> rounded p-1.5 border-l-2 mb-2 overflow-auto text-start w-full">
   <div
     data-appointment-id="<%= appointment[:id] %>"
     data-action="click->appointment-card#show click->appointment-card#stopPropagation"
@@ -19,4 +19,4 @@
       <%= appointment[:patient] %>
     </p>
   </div>
-</div>
+</button>
