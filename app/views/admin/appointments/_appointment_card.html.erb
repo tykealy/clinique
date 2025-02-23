@@ -1,3 +1,4 @@
+<% status_color = appointment.status == 'confirmed' ? 'text-green-400' : ( appointment.status == 'cancelled' ? 'text-red-400': 'text-[#F0A04B]') %>
 <div  data-appointment-card-target="appointmentCard">
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black md:ml-64 bg-opacity-10">
     <!-- Card Container -->
@@ -30,7 +31,7 @@
         </div>
         <!-- Status -->
         <div class="flex items-center mb-4 text-sm text-gray-600">
-          <svg class="w-4 h-4 mr-1 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+          <svg class="w-4 h-4 mr-1 <%= status_color %>" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 10-1.414 1.414L9 13.414l4.707-4.707z"/>
           </svg>
           <span><%=  I18n.t("appointment.#{appointment.status}")%></span>
