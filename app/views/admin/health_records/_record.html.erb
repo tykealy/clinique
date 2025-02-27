@@ -1,13 +1,13 @@
 <input  type="text" 
   autocomplete="off"
   value="<%= record.health_condition.name %>"
-  class="block w-full col-span-5 mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
+  class="block w-full col-span-5 mt-1 text-sm border-gray-300 rounded-md shadow-sm 2xl:text-lg focus:border-gray-300 focus:ring-primary disabled:opacity-50"
   disabled
   data-patient-health-records-target="conditionInput"
 />
 <input type="text"
   value="<%= record.value %>"
-  class="block w-full col-span-5 mt-1 border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
+  class="block w-full col-span-5 mt-1 text-sm border-gray-300 rounded-md shadow-sm 2xl:text-lg focus:border-gray-300 focus:ring-primary disabled:opacity-50"
   disabled
   data-patient-health-records-target="conditionValueInput"
 />
@@ -17,7 +17,7 @@
         data: {
           turbo_method: :delete,
           turbo_confirm: "Are you sure?"
-        }, class: "flex items-center gap-2" do %>
+        }, class: "flex items-center gap-2 text-sm " do %>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
           <path d="M3 6h18" />
           <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
@@ -25,7 +25,7 @@
           <path d="M14 11v6" />
           <path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14" />
       </svg>
-      <span class="items-center hidden leading-none sm:inline-flex">Delete</span>
+      <span class="items-center hidden text-sm leading-none sm:inline-flex 2xl:text-lg">Delete</span>
     <% end %>
   </button>
 </div>
