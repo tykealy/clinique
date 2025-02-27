@@ -6,7 +6,7 @@
     data-action="input->patient-health-records#conditionSearch"
     data-patient-health-records-target="conditionInput"
     data-patient-id="<%= @patient.id %>"
-    class="w-full border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
+    class="w-full text-sm border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50 2xl:text-lg"
     placeholder="Enter condition name"
     autocomplete="off"
     required />
@@ -19,7 +19,7 @@
 <div class="w-full col-span-5 mt-1">
   <label for="new-value" class="sr-only">Value</label>
   <input id="new-value" name="health_record[value]" type="text"
-    class="w-full border-gray-300 rounded-md shadow-sm focus:border-gray-300 focus:ring-primary disabled:opacity-50"
+    class="w-full text-sm border-gray-300 rounded-md shadow-sm 2xl:text-lg focus:border-gray-300 focus:ring-primary disabled:opacity-50"
     placeholder="Enter value"
     data-patient-id="<%= @patient.id %>"
     data-patient-health-records-target="conditionValueInput"
@@ -34,7 +34,7 @@
         <path d="M12 5v14" />
         <path d="M5 12h14" />
       </svg>
-      <span class="items-center hidden leading-none sm:inline-flex">Add</span>
+      <span class="items-center hidden text-sm leading-none sm:inline-flex 2xl:text-lg">Add</span>
     </span>
   </button>
 </div>

@@ -1,4 +1,4 @@
-<div class="grid grid-cols-2 gap-8 grid-row-4 2xl:grid-cols-4 2xl:gap-12">
+<div class="grid grid-cols-2 gap-8 grid-row-4">
   <div class="items-center">
     <%= f.label I18n.t('doctor.profile'), class: "block text-sm 2xl:text-lg font-medium text-gray-700 mb-2" %>
     <div data-controller="profile-preview">
@@ -54,7 +54,7 @@
     <%= f.label :email, class: "block text-sm 2xl:text-lg font-medium text-gray-700" %>
     <%= f.email_field :email, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm 2xl:text-lg" %>
   </div>
-  <div class="grid grid-cols-4 col-span-2 gap-4 2xl:grid-cols-5">
+  <div class="grid grid-cols-4 col-span-2 gap-4">
     <div>
       <%= f.label :address, class: "block text-sm 2xl:text-lg font-medium text-gray-700" %>
       <%= f.text_field :address, class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm 2xl:text-lg" %>
@@ -65,7 +65,7 @@
     </div>
     <div class="col-span-2 form-group">
       <%= f.fields_for :preferences, @doctor.preferences do |preferences| %>
-        <div class="grid grid-cols-2 gap-4 2xl:grid-cols-3">
+        <div class="grid grid-cols-2 gap-4">
           <div>
             <%= preferences.label :bg_color, "Background Color", class: "block text-sm 2xl:text-lg font-medium text-gray-700" %>
             <%= preferences.text_field :bg_color, value: @doctor.preferences['bg_color'], class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm 2xl:text-lg" %>
