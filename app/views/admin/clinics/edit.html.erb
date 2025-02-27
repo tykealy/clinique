@@ -1,7 +1,7 @@
 <%= render partial: "admin/shared/sidebar", locals: {tab: 'clinic'} %>
 <div class="p-4 mt-20 md:ml-64">
-  <h2 class="px-4 mb-6 text-2xl font-semibold text-gray-900">Edit Clinic</h2>
-  <div  class="px-4 py-4 mx-4 bg-white border-2 rounded-lg ">
+  <h2 class="px-4 mb-6 text-2xl font-semibold text-gray-900 2xl:px-8 2xl:text-3xl ">Edit Clinic</h2>
+  <div  class="px-4 py-4 mx-4 bg-white border-2 rounded-lg 2xl:px-8 2xl:py-4 2xl:mx-8 ">
     <%= form_with model: @current_clinic, url: { action: 'update' }, class: "" do |f| %>
       <%=render partial: 'form', locals: {f:f}%>
     <% end %>

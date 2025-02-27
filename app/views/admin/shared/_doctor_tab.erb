@@ -1,0 +1,15 @@
+<div class="p-2 mx-4 mb-5 bg-white border-2 rounded-lg 2xl:mx-8 ">
+  <ul class="flex w-full gap-6 overflow-auto 2xl:p-2">
+    <li class="<%= '2xl:text-lg bg-primary text-white'if tab=="General" %> py-2 px-3 text-sm rounded-md ">
+      <a href="/admin/doctors/<%= @doctor.id %>/edit">
+        General
+      </a>
+    </li>
+    <li class="<%= '2xl:text-lg bg-primary'if tab=="Appointments" %> px-3 text-sm 2xl:text-lg py-2 rounded-md">
+      Appointments
+    </li>
+    <li class="<%= 'bg-primary'if tab=="Patients" %> px-3 text-sm 2xl:text-lg py-2 rounded-md">Patients</li>
+    <li class="<%= 'bg-primary'if tab=="Diagnosis" %> px-3 text-sm 2xl:text-lg py-2 rounded-md">Diagnosis</li>
+    <li class="<%= 'bg-primary'if tab=="Treatments" %> px-3 text-sm 2xl:text-lg py-2 rounded-md">Treatments</li>
+  </ul>
+</div>
