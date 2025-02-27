@@ -1,19 +1,19 @@
-<div class="p-1 mx-4 mb-5 bg-white border-2 rounded-lg ">
-  <ul class="flex w-full gap-6 overflow-auto ">
-    <li class="px-3 py-2 rounded-md <%= 'bg-primary text-white'if tab=="General" %> ">
+<div class="p-2 mx-4 mb-5 bg-white border-2 rounded-lg 2xl:mx-8 ">
+  <ul class="flex w-full gap-6 overflow-auto 2xl:p-2">
+    <li class="px-3 text-sm 2xl:text-lg py-2 rounded-md <%= 'bg-primary text-white'if tab=="General" %> ">
       <a href="/admin/patients/<%= @patient.id %>/edit" >
         General
       </a>
     </li>
-    <li class="px-3 py-2 rounded-md <%= 'bg-primary text-white'if tab=="Appointments" %> ">
+    <li class="px-3 text-sm 2xl:text-lg py-2 rounded-md <%= 'bg-primary text-white'if tab=="Appointments" %> ">
       Appointments
     </li>
-    <li class="px-3 py-2 rounded-md <%= 'bg-primary text-white'if tab=='Health Records' %>">
+    <li class="px-3 text-sm 2xl:text-lg py-2 rounded-md <%= 'bg-primary text-white'if tab=='Health Records' %>">
       <a href="/admin/patients/<%= @patient.id %>/health_records">
         Medical History
       </a>
     </li>
-    <li class="px-3 py-2 rounded-md <%= 'bg-primary'if tab=='Diagnosis '%>">Diagnosis</li>
-    <li class="px-3 py-2 rounded-md <%= 'bg-primary'if tab=='Treatments '%>">Treatments</li>
+    <li class="px-3 text-sm 2xl:text-lg py-2 rounded-md <%= 'bg-primary'if tab=='Diagnosis '%>">Diagnosis</li>
+    <li class="px-3 text-sm 2xl:text-lg py-2 rounded-md <%= 'bg-primary'if tab=='Treatments '%>">Treatments</li>
   </ul>
 </div>

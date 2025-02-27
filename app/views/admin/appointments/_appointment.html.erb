@@ -12,10 +12,10 @@
     data-appointment-id="<%= appointment[:id] %>"
     data-action="click->appointment-card#show click->appointment-card#stopPropagation"
     >
-    <p class="mb-px text-xs font-normal text-gray-900" data-appointment-id="<%= appointment[:id] %>">
+    <p class="mb-px text-xs font-normal text-gray-900 2xl:text-sm" data-appointment-id="<%= appointment[:id] %>">
       <%= appointment[:title] %>
     </p>
-    <p class=" <%= f_color %> text-xs font-semibold " data-appointment-id="<%= appointment[:id] %>">
+    <p class=" <%= f_color %> text-xs font-semibold 2xl:text-sm" data-appointment-id="<%= appointment[:id] %>">
       <%= appointment[:patient] %>
     </p>
   </div>
