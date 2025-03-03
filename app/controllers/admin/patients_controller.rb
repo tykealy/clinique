@@ -33,21 +33,23 @@ module Admin
     def create
       @patient = Patient.new(patient_params)
       @patient.clinic_id = @current_clinic.id
+      record = @patient.class.name
       if @patient.save!
-        flash[:success] = I18n.t('flash.success')
+        flash[:success] = I18n.t('flash.created', record: record)
         redirect_to admin_patients_path
       else
-        flash[:danger] = I18n.t('flash.danger')
+        flash[:danger] = I18n.t('flash.danger', record: record)
         render :new
       end
     end
 
     def update
+      record = @patient.class.name
       if @patient.update(patient_params)
-        flash[:success] = I18n.t('flash.success')
+        flash[:success] = I18n.t('flash.updated', record: record)
         redirect_to admin_patients_path
       else
-        flash[:danger] = I18n.t('flash.danger')
+        flash[:danger] = I18n.t('flash.danger', record: record)
         render :edit
       end
     end

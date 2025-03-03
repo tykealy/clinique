@@ -8,10 +8,11 @@ module Admin
     end
 
     def update
+      record = @current_clinic.class.name
       if @current_clinic.update(clinic_params)
-        flash[:success] = I18n.t('flash.success')
+        flash[:success] = I18n.t('flash.updated', record: record)
       else
-        flash[:danger] = I18n.t('flash.danger')
+        flash[:danger] = I18n.t('flash.danger', record: record)
       end
       redirect_to edit_admin_clinic_path(@current_clinic)
     end

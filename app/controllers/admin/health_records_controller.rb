@@ -47,14 +47,15 @@ module Admin
 
       return unless health_record.save
 
-      redirect_to admin_patient_health_records_path
+      flash[:success] = I18n.t('flash.created', record: 'Health Record')
+      redirect_to admin_patient_health_records_path(@patient)
     end
 
     def destroy
       record = @patient.health_records.find(params[:id])
-      record.destroy
-      flash[:success] = I18n.t('flash.success')
+      return unless record.destroy
 
+      flash[:success] = I18n.t('flash.destroyed', record: 'Health Record')
       redirect_to admin_patient_health_records_path(@patient)
     end
 

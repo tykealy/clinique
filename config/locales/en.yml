@@ -37,8 +37,10 @@ en:
     setting: "Setting"
     sign_out: "Sign Out"
   flash:
-    success: "Clinic updated successfully"
-    danger: "Clinic update failed"
+    created: "%{record} created successfully"
+    updated: "%{record} updated successfully"
+    danger: "Failed to save %{record}"
+    destroyed: "%{record} deleted successfully"
     notice:
       logout: "You've been logged out."
   doctor:
