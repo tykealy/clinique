@@ -17,5 +17,10 @@
   </head>
   <body>
     <%= yield %>
+    <% if flash[:success] %>
+      <%= render 'shared/alert', message: flash[:success] %>
+    <% elsif flash[:failed] %>
+      <%= render 'shared/alert', message: flash[:failed] %>
+    <% end %>
   </body>
 </html>

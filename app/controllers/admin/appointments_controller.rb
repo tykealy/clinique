@@ -31,10 +31,10 @@ module Admin
       @appointment.date = combine_date_time(date, time)
       @appointment.clinic_id = @current_clinic.id
       if @appointment.save
-        flash[:success] = I18n.t('flash.success')
+        flash[:success] = I18n.t('flash.created', record: @appointment.class.name)
         redirect_to admin_appointments_path(selected_date: @appointment.date)
       else
-        flash[:danger] = I18n.t('flash.danger')
+        flash[:danger] = I18n.t('flash.danger', record: @appointment.class.name)
       end
     end
 
@@ -44,10 +44,12 @@ module Admin
       time = appointment_params[:time_hour]
       combined_date_time = combine_date_time(date, time)
       if @appointment.update(appointment_params.except(:time_hour))
-        @appointment.update(date: combined_date_time)
-        redirect_to admin_appointments_path(selected_date: @appointment.date)
+        if @appointment.update(date: combined_date_time)
+          flash[:success] = I18n.t('flash.updated', record: @appointment.class.name)
+          redirect_to admin_appointments_path(selected_date: @appointment.date)
+        end
       else
-        flash[:danger] = I18n.t('flash.danger')
+        flash[:danger] = I18n.t('flash.danger', record: @appointment.class.name)
       end
     end
 

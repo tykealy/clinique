@@ -12,20 +12,19 @@
   data-patient-health-records-target="conditionValueInput"
 />
 <div class="flex justify-end col-span-2 gap-4 mt-1 text-center">
-  <button class="flex items-center justify-center w-full gap-2 px-1 text-white bg-red-400 rounded-md md:px-4 hover:bg-red-700">
-      <%= link_to admin_patient_health_record_path(id: record.id, patient_id: record.patient.id),
-        data: {
-          turbo_method: :delete,
-          turbo_confirm: "Are you sure?"
-        }, class: "flex items-center gap-2 text-sm " do %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-          <path d="M3 6h18" />
-          <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-          <path d="M10 11v6" />
-          <path d="M14 11v6" />
-          <path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14" />
-      </svg>
-      <span class="items-center hidden text-sm leading-none sm:inline-flex 2xl:text-lg">Delete</span>
-    <% end %>
-  </button>
+  <%= link_to admin_patient_health_record_path(id: record.id, patient_id: record.patient.id),
+      data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"},
+      class: "flex items-center gap-2 text-sm justify-center w-full px-1 text-white bg-red-400 rounded-md  md:px-4 hover:bg-red-700 " do 
+  %>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+        <path d="M3 6h18" />
+        <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+        <path d="M10 11v6" />
+        <path d="M14 11v6" />
+        <path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14" />
+    </svg>
+    <span class="items-center hidden text-sm leading-none sm:inline-flex 2xl:text-lg">Delete</span>
+  <% end %>
 </div>
