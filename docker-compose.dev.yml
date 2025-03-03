@@ -3,10 +3,8 @@ services:
     image: postgres:latest
     container_name: bosba-db
     restart: always
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: bosbadb
+    env_file:
+      - .env.dev
     networks:
       - bosba-network
     ports:
@@ -26,16 +24,15 @@ services:
     container_name: bosba-app
     depends_on:
       - db
-    environment:
-      RAILS_ENV: development
-      DATABASE_URL: postgres://myuser:mypassword@db:5432/bosbadb
+    env_file:
+      - .env.dev
     networks:
       - bosba-network
     volumes:
       - .:/app  # Syncs local files with the container (for hot reloading)
     ports:
       - "3000:3000"
-    command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0 -p 3000 & bundle exec rails tailwindcss:watch & wait"
+    command: bundle exec rails server -b 0.0.0.0 -p 3000
     logging:
       driver: "json-file"
       options:
