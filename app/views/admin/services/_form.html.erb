@@ -27,7 +27,8 @@
         <span class="inline-flex items-center px-3 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50">
           USD
         </span>
-        <%= f.number_field :price, step: "0.01", min: 0, class: "block w-full rounded-none rounded-r-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg" %>
+        <%= f.number_field :price, step: "0.01", min: 0, class: "block w-full rounded-none rounded-r-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg",
+            data: { service_form_target: "fixedPriceInput" } %>
       </div>
     </div>
   </div>
@@ -49,7 +50,8 @@
           <span class="inline-flex items-center px-3 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50">
             USD
           </span>
-          <%= f.number_field :price, step: "0.01", min: 0, class: "block w-full rounded-none rounded-r-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg" %>
+          <%= f.number_field :price, step: "0.01", min: 0, class: "block w-full rounded-none rounded-r-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg",
+              data: { service_form_target: "minPriceInput" } %>
         </div>
       </div>
 
@@ -59,7 +61,8 @@
           <span class="inline-flex items-center px-3 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50">
             USD
           </span>
-          <%= f.number_field :price_max, step: "0.01", min: 0, class: "block w-full rounded-none rounded-r-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg" %>
+          <%= f.number_field :price_max, step: "0.01", min: 0, class: "block w-full rounded-none rounded-r-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg",
+              data: { service_form_target: "maxPriceInput" } %>
         </div>
       </div>
     </div>
