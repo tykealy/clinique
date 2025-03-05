@@ -33,6 +33,11 @@ Rails.application.routes.draw do
           get 'value_search', on: :collection
         end
       end
+      resources :services do
+        member do
+          patch :toggle_status
+        end
+      end
     end
   end
   namespace :api do

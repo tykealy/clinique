@@ -1,6 +1,7 @@
 class Clinic < ApplicationRecord
   belongs_to :user
   has_one_attached :logo
+  has_many :services, dependent: :destroy
 
   enum :status, { active: 0, inactive: 1 }
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_14_110310) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_05_081309) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -122,6 +122,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_14_110310) do
     t.index ["first_name"], name: "index_patients_on_first_name"
     t.index ["last_name"], name: "index_patients_on_last_name"
     t.index ["phone_number"], name: "index_patients_on_phone_number"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.integer "price_type", default: 0
+    t.decimal "price", precision: 10, scale: 2
+    t.decimal "price_max", precision: 10, scale: 2
+    t.integer "status", default: 1
+    t.integer "clinic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
