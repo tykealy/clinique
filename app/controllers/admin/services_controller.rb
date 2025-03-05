@@ -18,7 +18,6 @@ module Admin
 
     def create
       @service = @current_clinic.services.new(service_params)
-
       if @service.save
         flash[:sucess] = I18n.t('flash.created', record: @service.class.name)
         redirect_to admin_services_path
