@@ -1,0 +1,72 @@
+<div data-controller="service-form">
+  <div class="grid grid-cols-2 gap-8 mb-8">
+    <div class="">
+      <%= f.label :name, class: "block text-sm font-medium text-gray-700 2xl:text-lg" %>
+      <%= f.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg", required: true %>
+    </div>
+
+    <div class="">
+      <%= f.label :status, class: "block text-sm font-medium text-gray-700 2xl:text-lg" %>  
+      <%= f.select :status, options_for_select(Service.statuses.keys.map { |status| [status.humanize, status] }, @service.status), {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg" %>
+    </div>
+  </div>
+  <div class="flex flex-wrap mb-4 -mx-3" data-service-form-target="fixedSection">
+    <div class="w-1/2 px-3">
+      <%= f.label :price_type, class: "block text-sm font-medium text-gray-700 2xl:text-lg" %>
+      <%= f.select :price_type, options_for_select(Service.price_types.keys.map { |mode| [mode.humanize, mode] }, @service.price_type), {}, 
+          class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg",
+          data: { 
+            service_form_target: "modeSelect",
+            action: "change->service-form#togglePriceFields" 
+          } %>
+    </div>
+
+    <div class="w-1/2 px-3">
+      <%= f.label :price, class: "block text-sm font-medium text-gray-700 2xl:text-lg" %>
+      <div class="flex mt-1 rounded-md shadow-sm">
+        <span class="inline-flex items-center px-3 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50">
+          USD
+        </span>
+        <%= f.number_field :price, step: "0.01", min: 0, class: "block w-full rounded-none rounded-r-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden mb-4" data-service-form-target="rangeSection">
+    <div class="flex flex-wrap -mx-3">
+      <div class="w-1/3 px-3">
+        <%= f.label :price_type, class: "block text-sm font-medium text-gray-700 2xl:text-lg" %>
+        <%= f.select :price_type, options_for_select(Service.price_types.keys.map { |mode| [mode.humanize, mode] }, @service.price_type), {}, 
+            class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg",
+            data: { 
+              action: "change->service-form#togglePriceFields" 
+            } %>
+      </div>
+
+      <div class="w-1/3 px-3">
+        <%= f.label :price, "Minimum Price", class: "block text-sm font-medium text-gray-700 2xl:text-lg" %>
+        <div class="flex mt-1 rounded-md shadow-sm">
+          <span class="inline-flex items-center px-3 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50">
+            USD
+          </span>
+          <%= f.number_field :price, step: "0.01", min: 0, class: "block w-full rounded-none rounded-r-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg" %>
+        </div>
+      </div>
+
+      <div class="w-1/3 px-3">
+        <%= f.label :price_max, "Maximum Price", class: "block text-sm font-medium text-gray-700 2xl:text-lg" %>
+        <div class="flex mt-1 rounded-md shadow-sm">
+          <span class="inline-flex items-center px-3 text-sm text-gray-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50">
+            USD
+          </span>
+          <%= f.number_field :price_max, step: "0.01", min: 0, class: "block w-full rounded-none rounded-r-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mb-4">
+    <%= f.label :description, class: "block text-sm font-medium text-gray-700 2xl:text-lg" %>
+    <%= f.text_area :description, rows: 4, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 2xl:text-lg" %>
+  </div>
+</div>

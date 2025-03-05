@@ -10,7 +10,7 @@ services:
     volumes:
       - prod_postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
       interval: 10s
@@ -31,7 +31,7 @@ services:
     volumes:
       - prod_tmp:/app/tmp
       - prod_uploads:/app/public/uploads
-    port:
+    ports:
       - "3000:3000"
     command: ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 

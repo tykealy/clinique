@@ -1,29 +1,29 @@
-<%= render partial: "admin/shared/sidebar", locals: {tab: 'patients'} %>
-<% total_pages = @patients.total_pages %>
-<% current_page = @patients.current_page %>
-<% max_display_pages = 5 %> <!-- Customize how many pages to show -->
+<%= render partial: "admin/shared/sidebar", locals: {tab: 'services'} %>
+<% total_pages = @services.total_pages %>
+<% current_page = @services.current_page %>
+<% max_display_pages = 5 %>
 <% start_page = [current_page - max_display_pages / 2, 1].max %>
 <% end_page = [start_page + max_display_pages - 1, total_pages].min %>
 <div class="mt-20 md:ml-64">
   <div class="px-4 py-2 2xl:px-8 2xl:py-4">
     <ul class="flex items-center">
       <li class="flex-1 ">
-        <h6 class="text-3xl font-semibold leading-8 text-gray-900 2xl:text-4xl">Patients</h6>
+        <h6 class="text-3xl font-semibold leading-8 text-gray-900 2xl:text-4xl">Services</h6>
       </li>
       <li>
-        <a href="/admin/patients/new">
+        <a href="/admin/services/new">
           <button class="hover:bg-secondary py-2.5 pr-7 pl-5 rounded-lg flex items-center gap-2 text-md 2xl:text-lg font-semibold text-white transition-all duration-300 bg-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M10 5V15M15 10H5" stroke="white" stroke-width="1.6" stroke-linecap="round"></path>
             </svg>
-            New Patients
+            New Service
           </button>
         </a>
       </li>
     </ul>
   </div>
   <div>
-    <form action="<%= admin_patients_path %>" method="get" class="pt-2 pb-3 mx-4 max-w 2xl:mx-8 2xl:pt-4 2xl:pb-5">
+    <form action="<%= admin_services_path %>" method="get" class="pt-2 pb-3 mx-4 max-w 2xl:mx-8 2xl:pt-4 2xl:pb-5">
       <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only 2xl:text-lg dark:text-white">Search</label>
       <div class="relative">
         <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 2xl:ps-5 ps-3">
@@ -31,7 +31,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
           </svg>
         </div>
-        <input type="search" name="query" id="default-search" class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg 2xl:text-lg ps-10 2xl:ps-16 focus:ring-primary focus:border-primary " placeholder="Search by Name or Phone Number" value="<%= params[:query] %>" required />
+        <input type="search" name="query" id="default-search" class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg 2xl:text-lg ps-10 2xl:ps-16 focus:ring-primary focus:border-primary " placeholder="Search by Service Name" value="<%= params[:query] %>" required />
         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-primary hover:bg-secondary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm 2xl:text-lg px-4 py-2  dark:bg-primary dark:hover:bg-secondary dark:focus:ring-secondary">Search</button>
       </div>
       <% if params[:query].present? %>
@@ -39,7 +39,7 @@
           <span class="text-sm font-semibold text-gray-500 2xl:text-lg">Search:</span>
           <span class="flex items-center px-2 rounded-lg bg-primary">
             <span class="text-sm font-semibold 2xl:text-lg text-gray-50 "><%= params[:query] %></span>
-            <%= link_to admin_patients_path, class: 'text-gray-500 text-sm 2xl:text-lg ml-1' do %>
+            <%= link_to admin_services_path, class: 'text-gray-500 text-sm 2xl:text-lg ml-1' do %>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" class="w-3 h-3">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -55,46 +55,62 @@
         <thead class="bg-gray-50">
           <tr>
             <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase 2xl:text-sm">Name</th>
-            <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase 2xl:text-sm">Phone Number</th>
-            <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase 2xl:text-sm">Email</th>
-            <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase 2xl:text-sm">Address</th>
-            <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase 2xl:text-sm">Age</th>
+            <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase 2xl:text-sm">Price Type</th>
+            <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase 2xl:text-sm">Price</th>
+            <th class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase 2xl:text-sm">Status</th>
             <th class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase 2xl:text-sm">Actions</th>
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-          <% @patients.each do |patient| %>
+          <% @services.each do |service| %>
             <tr>
               <td class="px-6 py-4 text-sm font-medium text-gray-900 2xl:text-lg whitespace-nowrap">
-                <a href=<%= "/admin/patients/#{patient.id}/edit" %> >
-                  <%= patient.full_name %>
+                <a href=<%= "/admin/services/#{service.id}/edit" %> >
+                  <%= service.name %>
                 </a>
               </td>
-              <td class="px-6 py-4 text-sm text-gray-500 2xl:text-lg whitespace-nowrap"><%= patient.phone_number %></td>
-              <td class="px-6 py-4 text-sm text-gray-500 2xl:text-lg whitespace-nowrap"><%= patient.email %></td>
-              <td class="px-6 py-4 text-sm text-gray-500 2xl:text-lg whitespace-nowrap"><%= patient.address %></td>
-              <td class="px-6 py-4 text-sm text-gray-500 2xl:text-lg whitespace-nowrap"><%= patient.age %></td>
+              <td class="px-6 py-4 text-sm text-gray-500 2xl:text-lg">
+                <%= service.price_type.upcase %>
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-500 2xl:text-lg whitespace-nowrap">
+                <% if service.fixed? %>
+                  <%= number_to_currency(service.price, unit: "USD ") %>
+                <% else %>
+                  <%= number_to_currency(service.price, unit: "USD ") %> - <%= number_to_currency(service.price_max, unit: "USD ") %>
+                <% end %>
+              </td>
+              <td class="px-6 py-4 text-sm text-gray-500 2xl:text-lg whitespace-nowrap <%= service.status == 'active' ? "text-primary" :"text-red-400"%>">
+                <%= service.status.upcase %>
+              </td>
               <td class="px-6 py-4 text-sm font-medium text-center 2xl:text-lg whitespace-nowrap">
-                <a href="/admin/patients/<%= patient.id %>/edit" class="inline-block text-primary hover:text-secondary">
+                <a href="/admin/services/<%= service.id %>/edit" class="inline-block text-primary hover:text-secondary" title="Edit Service">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5">
                     <path d="M12 20h9" />
                     <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
                     <path d="m15 5 3 3" />
                   </svg>
                 </a>
-                <%= link_to admin_patient_path(id: patient.id),
+                <%= link_to toggle_status_admin_service_path(id: service.id),
                     data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "Are you sure?"
+                      turbo_method: :patch,
+                      turbo_confirm: "Are you sure you want to #{service.active? ? 'deactivate' : 'activate'} this service?"
                     },
-                    class: "text-red-600 hover:text-red-700 ml-4 inline-block" do %>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5">
-                      <path d="M3 6h18" />
-                      <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                      <path d="M10 11v6" />
-                      <path d="M14 11v6" />
-                      <path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14" />
+                    class: "#{service.active? ? 'text-green-600 hover:text-green-700' : 'text-red-600 hover:text-red-700'} ml-4 inline-block",
+                    title: "#{service.active? ? 'Deactivate' : 'Activate'} Service" do %>
+
+                  <% if service.active? %>
+                    <!-- Active (On) Toggle -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20" fill="none">
+                      <rect x="1" y="1" width="38" height="18" rx="9" fill="#92bea0" stroke="white" stroke-width="1.6"></rect>
+                      <circle cx="29" cy="10" r="7" fill="white"></circle>
                     </svg>
+                  <% else %>
+                    <!-- Inactive (Off) Toggle -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20" fill="none">
+                      <rect x="1" y="1" width="38" height="18" rx="9" fill="#BDBDBD" stroke="white" stroke-width="1.6"></rect>
+                      <circle cx="11" cy="10" r="7" fill="white"></circle>
+                    </svg>
+                  <% end %>
                 <% end %>
               </td>
             </tr>
@@ -112,16 +128,16 @@
       <div>
         <p class="text-sm text-gray-700 2xl:text-lg">
           Showing
-          <span class="font-medium"><%= [@patients.size, @patients.total_count].min %></span>
+          <span class="font-medium"><%= [@services.size, @services.total_count].min %></span>
           of
-          <span class="font-medium"><%= @patients.total_count %></span>
+          <span class="font-medium"><%= @services.total_count %></span>
           results
         </p>
       </div>
       <div>
         <nav class="inline-flex -space-x-px rounded-md shadow-sm isolate" aria-label="Pagination">
-          <% if @patients.prev_page %>
-            <%= link_to admin_patients_path(page: @patients.prev_page, query: params[:query] ), class: 'relative inline-flex items-center px-2 py-2 text-gray-400 rounded-l-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0' do %>
+          <% if @services.prev_page %>
+            <%= link_to admin_services_path(page: @services.prev_page, query: params[:query] ), class: 'relative inline-flex items-center px-2 py-2 text-gray-400 rounded-l-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0' do %>
               <span class="sr-only">Previous</span>
               <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                 <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
@@ -136,25 +152,24 @@
             </span>
           <% end %>
           <% if start_page > 1 %>
-            <%= link_to '1', admin_patients_path(page: 1, query: params[:query]), class: 'px-4 py-2 text-sm 2xl:text-lg font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50' %>
+            <%= link_to '1', admin_services_path(page: 1, query: params[:query]), class: 'px-4 py-2 text-sm 2xl:text-lg font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50' %>
             <span class="px-4 py-2 ring-1 ring-inset ring-gray-300">...</span>
           <% end %>
           <% (start_page..end_page).each do |page_number| %>
             <% if page_number == current_page %>
-              <!-- Current Page Link -->
               <span class="relative z-10 inline-flex items-center px-4 py-2 text-sm font-semibold text-white 2xl:text-lg bg-primary focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
                 <%= page_number %>
               </span>
             <% else %>
-              <%= link_to page_number, admin_patients_path(page: page_number, query: params[:query]), class: 'relative inline-flex items-center px-4 py-2 text-sm 2xl:text-lg font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0' %>
+              <%= link_to page_number, admin_services_path(page: page_number, query: params[:query]), class: 'relative inline-flex items-center px-4 py-2 text-sm 2xl:text-lg font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0' %>
             <% end %>
           <% end %>
           <% if end_page < total_pages %>
             <span class="px-4 py-2 ring-1 ring-inset ring-gray-300">...</span>
-            <%= link_to total_pages, admin_patients_path(page: total_pages, query: params[:query]), class: 'px-4 py-2 text-sm 2xl:text-lg font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50' %>
+            <%= link_to total_pages, admin_services_path(page: total_pages, query: params[:query]), class: 'px-4 py-2 text-sm 2xl:text-lg font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50' %>
           <% end %>
-          <% if @patients.next_page %>
-            <%= link_to admin_patients_path(page: @patients.next_page, query: params[:query]), class: 'relative inline-flex items-center px-2 py-2 text-gray-400 rounded-r-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0' do %>
+          <% if @services.next_page %>
+            <%= link_to admin_services_path(page: @services.next_page, query: params[:query]), class: 'relative inline-flex items-center px-2 py-2 text-gray-400 rounded-r-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0' do %>
               <span class="sr-only">Next</span>
               <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                 <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
