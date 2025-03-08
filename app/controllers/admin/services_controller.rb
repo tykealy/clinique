@@ -13,8 +13,7 @@ module Admin
       @service = Service.new
     end
 
-    def edit
-    end
+    def edit; end
 
     def create
       @service = @current_clinic.services.new(service_params)
@@ -37,8 +36,7 @@ module Admin
       end
     end
 
-    def destroy
-    end
+    def destroy; end
 
     def toggle_status
       new_status = @service.active? ? :inactive : :active

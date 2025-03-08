@@ -50,7 +50,7 @@ module Admin
         redirect_to admin_patients_path
       else
         flash[:danger] = I18n.t('flash.danger', record: record)
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
