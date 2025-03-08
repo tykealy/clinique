@@ -1,6 +1,7 @@
 class CreateServices < ActiveRecord::Migration[7.2]
   def change
-    create_table :services do |t|
+    unless table_exists?(:services)
+      create_table :services do |t|
       t.string :name, null: false
       t.text :description
       t.integer :price_type, default: 0
@@ -10,6 +11,7 @@ class CreateServices < ActiveRecord::Migration[7.2]
       t.integer :clinic_id, null: false
 
       t.timestamps
+      end
     end
   end
 end

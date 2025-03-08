@@ -33,7 +33,6 @@ services:
       - prod_uploads:/app/public/uploads
     ports:
       - "3000:3000"
-    command: ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 
 networks:
   bosba_prod_network:
