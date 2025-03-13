@@ -17,7 +17,7 @@
       </li>
     </ul>
   </div>
-  <%= render partial: "/admin/shared/patient_tab", locals: {tab: "Health Records"} %>   
+  <%= render partial: "/admin/shared/patient_tab", locals: {tab: "Health Records"} %>
   <%= render partial: 'new' %>
   <section class="grid grid-cols-12 gap-4 px-1 pb-4 mx-4 bg-white border-b-2 rounded-lg rounded-t-none 2xl:mx-8 md:px-4 border-x-2" data-controller="patient-health-records">
     <% @health_records.each do |record| %>
