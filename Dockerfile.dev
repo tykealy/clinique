@@ -33,9 +33,10 @@ RUN bundle install --jobs 4 --retry 5
 # Copy application code
 COPY . .
 
+ENTRYPOINT ["/app/bin/docker-entrypoint"]
 # Expose port for Rails server
 EXPOSE 3000
 
 # Default command
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+CMD ["bin/rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 
