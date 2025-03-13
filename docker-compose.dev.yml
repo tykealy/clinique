@@ -22,6 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     container_name: bosba-app
+    stdin_open: true
     depends_on:
       - db
     env_file:
@@ -32,7 +33,6 @@ services:
       - .:/app  # Syncs local files with the container (for hot reloading)
     ports:
       - "3000:3000"
-    command: bundle exec rails server -b 0.0.0.0 -p 3000
     logging:
       driver: "json-file"
       options:
