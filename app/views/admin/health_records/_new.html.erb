@@ -1,5 +1,5 @@
 <%= form_with model: HealthRecord.new, url: admin_patient_health_records_path, data: { turbo_frame: "health_records" }, local: false do |f| %>
-    <section data-controller="patient-health-records" class="grid grid-cols-12 gap-4 px-1 py-1 mx-4 border-2 border-b-0 rounded-lg rounded-b-none 2xl:mx-8 md:py-4 md:px-4">
-        <%= render partial: 'form', locals:{f:f} %>
-    </section>
+  <section data-controller="patient-health-records" class="grid grid-cols-12 gap-4 px-1 py-1 mx-4 border-2 border-b-0 rounded-lg rounded-b-none 2xl:mx-8 md:py-4 md:px-4">
+    <%= render partial: 'form', locals:{f:f} %>
+  </section>
 <% end %>
