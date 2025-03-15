@@ -2,7 +2,7 @@ require 'rails_helper'
 
 module Admin
   RSpec.describe AppointmentQuery do
-    let!(:clinic) { create(:clinic, email: "sdfsd@gmail.com") }
+    let!(:clinic) { create(:clinic, email: "t@gmail.com") }
     let!(:patient) { create(:patient, clinic: clinic) }
     let!(:doctor) { create(:doctor, clinic: clinic) }
     let!(:start_date) { Time.zone.local(2024, 1, 1, 8) } # Jan 1, 2024 at 8:00 AM
