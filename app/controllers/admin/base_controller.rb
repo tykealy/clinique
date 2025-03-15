@@ -6,7 +6,7 @@ module Admin
     before_action :load_appointment_count
 
     def current_clinic
-      @current_clinic ||= current_user.clinic
+      @current_clinic ||= current_user.clinics.first
 
       return unless @current_clinic.nil?
 
