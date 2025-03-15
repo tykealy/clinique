@@ -5,26 +5,9 @@ class Appointment < ApplicationRecord
 
   enum :status, { confirmed: 1, pending: 0, cancelled: 2 }
 
-  def fetch_appointments_for_week(start_date)
-    end_date = start_date + 6.days
+  scope :for_clinic, -> (clinic) { where(clinic_id: clinic.id) }
+  scope :on_date, -> (date) { where(date: date.all_day) }
+  scope :with_status, -> (status) { where(status: status) }
 
-    appointments = Appointment.where(date: start_date.beginning_of_day..end_date.end_of_day)
-
-    # Initialize the structure
-    calendar_data = Hash.new { |hash, key| hash[key] = Hash.new { |h, k| h[k] = [] } }
-
-    # Populate the structure
-    appointments.each do |appt|
-      hour = appt.date.hour
-      date = appt.date.strftime('%b %e') # Format as "Jan 7"
-
-      calendar_data[hour][date] << {
-        title: appt.title,
-        doctor: "Dr. #{appt.doctor_id}", # Adjust doctor representation as needed
-        time: "#{appt.date.strftime('%H:%M')} - #{(appt.date + 30.minutes).strftime('%H:%M')}"
-      }
-    end
-
-    calendar_data
-  end
+  scope :confirmed_for_date, -> (date) { on_date(date).with_status(:confirmed) }
 end
