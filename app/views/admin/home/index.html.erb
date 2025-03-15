@@ -1,1 +1,33 @@
-<%= render partial: "admin/shared/sidebar", locals: { tab: 'admin'} %>
+<%= render partial: "/admin/shared/sidebar", locals: {tab: 'home'} %>
+<%# Dental Chart Layout %>
+<div  class="mt-20 md:ml-64">
+  <div class="w-full max-w-4xl mx-auto">
+    <%# Upper Teeth (18-11, 21-28) %>
+    <div class="grid gap-1 mb-8 grid-cols-16">
+      <%# Top Left (18-11) %>
+      <div class="grid grid-cols-8 col-span-8 col-start-1">
+        <% (18.downto(11)).each do |number| %>
+          <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+        <% end %>
+      </div>
+      <%# Top Right (21-28) %>
+      <div class="grid grid-cols-8 col-span-8 col-start-9">
+        <% (21..28).each do |number| %>
+          <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="grid gap-1 mb-8 grid-cols-16">
+      <div class="grid grid-cols-8 col-span-8 col-start-1">
+        <% (48.downto(41)).each do |number| %>
+          <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+        <% end %>
+      </div>
+      <div class="grid grid-cols-8 col-span-8 col-start-9">
+        <% (31..38).each do |number| %>
+          <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
