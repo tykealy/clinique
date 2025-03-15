@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :clinic do
     name { "Testing Denttal" }
-    status {'active'}
+    status { 'active' }
     sequence(:email) { |n| "clinic#{n}@example.com" } # Ensure unique emails
-    association :user
   end
 end
