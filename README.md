@@ -122,6 +122,9 @@ docker attach bosba-container
 
 # Execute commands in container
 docker-compose exec app bash
+
+#Run Rspec
+docker exec -it bosba-app bundle exec rspec
 ```
 
 ## AWS S3 Setup
