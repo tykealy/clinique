@@ -1,31 +1,42 @@
 <%= render partial: "/admin/shared/sidebar", locals: {tab: 'admin'} %>
 <%# Dental Chart Layout %>
-<div  class="mt-20 md:ml-64">
+<div class="mt-20 md:ml-64">
   <div class="w-full max-w-4xl mx-auto">
     <%# Upper Teeth (18-11, 21-28) %>
-    <div class="grid gap-1 mb-8 grid-cols-16">
+    <div class="flex mb-2">
       <%# Top Left (18-11) %>
-      <div class="grid grid-cols-8 col-span-8 col-start-1">
+      <div class="flex justify-end flex-1">
         <% (18.downto(11)).each do |number| %>
-          <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+          <span class="w-8">
+            <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+          </span>
         <% end %>
       </div>
       <%# Top Right (21-28) %>
-      <div class="grid grid-cols-8 col-span-8 col-start-9">
+      <div class="flex flex-1">
         <% (21..28).each do |number| %>
-          <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+          <span class="w-8">
+            <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+          </span>
         <% end %>
       </div>
     </div>
-    <div class="grid gap-1 mb-8 grid-cols-16">
-      <div class="grid grid-cols-8 col-span-8 col-start-1">
+    <%# Lower Teeth %>
+    <div class="flex mb-2">
+      <%# Bottom Left (48-41) %>
+      <div class="flex justify-end flex-1">
         <% (48.downto(41)).each do |number| %>
-          <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+          <span class="w-8">
+            <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+          </span>
         <% end %>
       </div>
-      <div class="grid grid-cols-8 col-span-8 col-start-9">
+      <%# Bottom Right (31-38) %>
+      <div class="flex flex-1">
         <% (31..38).each do |number| %>
-          <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+          <span class="w-8">
+            <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+          </span>
         <% end %>
       </div>
     </div>
