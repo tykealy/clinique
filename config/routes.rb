@@ -38,6 +38,11 @@ Rails.application.routes.draw do
           patch :toggle_status
         end
       end
+      resources :diagnoses do
+        member do
+          patch :toggle_status
+        end
+      end
     end
   end
   namespace :api do
