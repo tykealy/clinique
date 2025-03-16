@@ -14,7 +14,7 @@ module Admin
     end
 
     def load_appointment_count
-      @today_appointment_count ||= Appointment.where(date: Time.zone.today.all_day).count
+      @today_appointment_count ||= Appointment.for_clinic(@current_clinic).confirmed_for_date(Time.zone.today).count
     end
   end
 end

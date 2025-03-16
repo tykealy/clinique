@@ -6,9 +6,12 @@ module Admin
       @show_cancelled = show_cancelled
     end
 
+    def date_range
+      @start_date.beginning_of_day..(@start_date + 6.days).end_of_day
+    end
+
     def fetch_appointments_for_week
       appointments = Appointment
-                     .includes(:doctor, :patient)
                      .select(
                        "appointments.id AS appointment_id,
                         appointments.title AS appointment_title,
@@ -21,14 +24,14 @@ module Admin
                         patients.first_name AS patient_firstname,
                         patients.last_name AS patient_lastname"
                      )
-                     .where(
-                       date: @start_date.beginning_of_day..(@start_date + 6.days).end_of_day,
-                       clinic_id: @clinic_id
-
-                     )
+                     .where(date: date_range)
+                     .where(clinic_id: @clinic_id)
                      .left_outer_joins(:doctor, :patient)
       appointments = appointments.where.not(status: :cancelled) unless @show_cancelled
+      build_calendar(appointments)
+    end
 
+    def build_calendar(appointments)
       calendar = Hash.new { |h, k1| h[k1] = Hash.new { |h1, k2| h1[k2] = [] } }
 
       appointments.each do |appointment|
