@@ -8,8 +8,8 @@
   <% doctors =  'bg-primary' %>
 <% elsif tab == "services" %>
   <% services =  'bg-primary' %>
-<% elsif tab == "diagnosis" %>
-  <% diagnosis = 'bg-primary' %>
+<% elsif tab == "diagnoses" %>
+  <% diagnoses = 'bg-primary' %>
 <% else %>
   <% patients = 'bg-primary' %>
 <% end %>
@@ -67,7 +67,7 @@
         </a>
       </li>
       <li>
-        <a href="/admin/diagnoses" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group <%= diagnosis %>">
+        <a href="/admin/diagnoses" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group <%= diagnoses %>">
           <%= render partial: "admin/shared/sidebar_icons/diagnoses" %>
           <span class="flex-1 ms-3 whitespace-nowrap">Diagnoses</span>
         </a>
