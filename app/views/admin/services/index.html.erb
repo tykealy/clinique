@@ -13,9 +13,7 @@
       <li>
         <a href="/admin/services/new">
           <button class="hover:bg-secondary py-2.5 pr-7 pl-5 rounded-lg flex items-center gap-2 text-md 2xl:text-lg font-semibold text-white transition-all duration-300 bg-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 5V15M15 10H5" stroke="white" stroke-width="1.6" stroke-linecap="round"></path>
-            </svg>
+            <%= render "admin/shared/svg", name: 'plus' %>
             New Service
           </button>
         </a>
@@ -27,9 +25,7 @@
       <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only 2xl:text-lg dark:text-white">Search</label>
       <div class="relative">
         <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 2xl:ps-5 ps-3">
-          <svg class="w-4 h-4 text-gray-500 2xl:w-8 2xl:h-8 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-          </svg>
+          <%= render "admin/shared/svg", name: 'search' %>
         </div>
         <input type="search" name="query" id="default-search" class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg 2xl:text-lg ps-10 2xl:ps-16 focus:ring-primary focus:border-primary " placeholder="Search by Service Name" value="<%= params[:query] %>" required />
         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-primary hover:bg-secondary focus:ring-4 focus:outline-none font-medium rounded-lg text-sm 2xl:text-lg px-4 py-2  dark:bg-primary dark:hover:bg-secondary dark:focus:ring-secondary">Search</button>
@@ -40,9 +36,7 @@
           <span class="flex items-center px-2 rounded-lg bg-primary">
             <span class="text-sm font-semibold 2xl:text-lg text-gray-50 "><%= params[:query] %></span>
             <%= link_to admin_services_path, class: 'text-gray-500 text-sm 2xl:text-lg ml-1' do %>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke="currentColor" class="w-3 h-3">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <%= render "admin/shared/svg", name: 'close' %>
             <% end %>
           </span>
         </div>
@@ -84,11 +78,7 @@
               </td>
               <td class="px-6 py-4 text-sm font-medium text-center 2xl:text-lg whitespace-nowrap">
                 <a href="/admin/services/<%= service.id %>/edit" class="inline-block text-primary hover:text-secondary" title="Edit Service">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5">
-                    <path d="M12 20h9" />
-                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
-                    <path d="m15 5 3 3" />
-                  </svg>
+                  <%= render "admin/shared/svg", name: 'edit' %>
                 </a>
                 <%= link_to toggle_status_admin_service_path(id: service.id),
                     data: {
@@ -98,17 +88,9 @@
                     class: "#{service.active? ? 'text-green-600 hover:text-green-700' : 'text-red-600 hover:text-red-700'} ml-4 inline-block",
                     title: "#{service.active? ? 'Deactivate' : 'Activate'} Service" do %>
                   <% if service.active? %>
-                    <!-- Active (On) Toggle -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20" fill="none">
-                      <rect x="1" y="1" width="38" height="18" rx="9" fill="#92bea0" stroke="white" stroke-width="1.6"></rect>
-                      <circle cx="29" cy="10" r="7" fill="white"></circle>
-                    </svg>
+                    <%= render "admin/shared/svg", name: 'toggle-on' %>
                   <% else %>
-                    <!-- Inactive (Off) Toggle -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" viewBox="0 0 40 20" fill="none">
-                      <rect x="1" y="1" width="38" height="18" rx="9" fill="#BDBDBD" stroke="white" stroke-width="1.6"></rect>
-                      <circle cx="11" cy="10" r="7" fill="white"></circle>
-                    </svg>
+                    <%= render "admin/shared/svg", name: 'toggle-off' %>
                   <% end %>
                 <% end %>
               </td>
@@ -138,16 +120,12 @@
           <% if @services.prev_page %>
             <%= link_to admin_services_path(page: @services.prev_page, query: params[:query] ), class: 'relative inline-flex items-center px-2 py-2 text-gray-400 rounded-l-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0' do %>
               <span class="sr-only">Previous</span>
-              <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
-              </svg>
+              <%= render "admin/shared/svg", name: 'chevron-left' %>
             <% end %>
           <% else %>
             <span class="relative inline-flex items-center px-2 py-2 text-gray-300 rounded-l-md ring-1 ring-inset ring-gray-300">
               <span class="sr-only">Previous</span>
-              <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
-              </svg>
+              <%= render "admin/shared/svg", name: 'chevron-left' %>
             </span>
           <% end %>
           <% if start_page > 1 %>
@@ -170,16 +148,12 @@
           <% if @services.next_page %>
             <%= link_to admin_services_path(page: @services.next_page, query: params[:query]), class: 'relative inline-flex items-center px-2 py-2 text-gray-400 rounded-r-md ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0' do %>
               <span class="sr-only">Next</span>
-              <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-              </svg>
+              <%= render "admin/shared/svg", name: 'chevron-right' %>
             <% end %>
           <% else %>
             <span class="relative inline-flex items-center px-2 py-2 text-gray-300 rounded-r-md ring-1 ring-inset ring-gray-300">
               <span class="sr-only">Next</span>
-              <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-              </svg>
+              <%= render "admin/shared/svg", name: 'chevron-right' %>
             </span>
           <% end %>
         </nav>
