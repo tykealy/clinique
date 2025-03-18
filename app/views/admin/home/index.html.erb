@@ -7,7 +7,8 @@
       <%# Top Left (18-11) %>
       <div class="flex justify-end flex-1">
         <% (18.downto(11)).each do |number| %>
-          <span class="w-8">
+          <span class="w-8 text-center 2xl:w-10">
+            <span class="text-xs"><%= number %></span>
             <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
           </span>
         <% end %>
@@ -15,7 +16,8 @@
       <%# Top Right (21-28) %>
       <div class="flex flex-1">
         <% (21..28).each do |number| %>
-          <span class="w-8">
+          <span class="w-8 text-center 2xl:w-10">
+            <span class="text-xs"><%= number %></span>
             <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
           </span>
         <% end %>
@@ -26,16 +28,18 @@
       <%# Bottom Left (48-41) %>
       <div class="flex justify-end flex-1">
         <% (48.downto(41)).each do |number| %>
-          <span class="w-8">
+          <span class="w-8 text-center 2xl:w-10">  
             <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+            <span class="text-xs"><%= number %></span>
           </span>
         <% end %>
       </div>
       <%# Bottom Right (31-38) %>
       <div class="flex flex-1">
         <% (31..38).each do |number| %>
-          <span class="w-8">
+          <span class="w-8 text-center 2xl:w-10">
             <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
+            <span class="text-xs"><%= number %></span>
           </span>
         <% end %>
       </div>
