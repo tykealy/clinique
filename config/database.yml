@@ -25,6 +25,19 @@ test:
     database: bosba_test_replica
     replica: true
 
+staging:
+  primary:
+    <<: *default
+    database: <%= ENV['DB_NAME'] %>
+    username: <%= ENV['DB_USERNAME'] %>
+    password: <%= ENV['DB_PASSWORD'] %>
+  primary_replica:
+    <<: *default
+    database: <%= ENV['DB_NAME'] %>
+    username: <%= ENV['DB_USERNAME'] %>
+    password: <%= ENV['DB_PASSWORD'] %>
+    replica: true
+
 production:
   primary:
     <<: *default
