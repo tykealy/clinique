@@ -4,7 +4,7 @@ common: &defaults
 
   # key: Your Organization key for Scout APM. Found on the settings screen.
   # - Default: none
-  key: X7OMqkY4tOYJ2RJnauPq
+  key: <%= ENV['SCOUT_KEY'] %>
 
   # log_level: Verboseness of logs.
   # - Default: 'info'
@@ -46,3 +46,5 @@ test:
 
 staging:
   <<: *defaults
+  # Optional: Different application name for staging
+  name: "Bosba (Staging)"

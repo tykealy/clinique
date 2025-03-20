@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: bosba-stg-db
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - bosba_stg_network
+    volumes:
+      - stg_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    image: tykea/bosba-stg:1.0.2 
+    container_name: bosba-stg-container
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - bosba_stg_network
+    volumes:
+      - stg_tmp:/app/tmp
+      - stg_uploads:/app/public/uploads
+    ports:
+      - "3000:3000"
+
+networks:
+  bosba_stg_network:
+
+volumes:
+  stg_postgres_data:
+  stg_tmp:
+  stg_uploads:
