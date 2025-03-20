@@ -23,7 +23,9 @@ class MigrateExistingClinicUserRelationships < ActiveRecord::Migration[7.2]
     end
 
     # Remove the user_id column from clinics
-    remove_column :clinics, :user_id, :integer
+    if column_exists?(:clinics, :user_id)
+      remove_column :clinics, :user_id, :integer
+    end
   end
 
   def down
