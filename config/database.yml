@@ -20,10 +20,12 @@ test:
   primary:
     <<: *default
     database: bosba_test
+    port: 5432
   primary_replica:
     <<: *default
     database: bosba_test_replica
     replica: true
+    port: 5432
 
 staging:
   primary:

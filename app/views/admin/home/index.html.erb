@@ -3,6 +3,7 @@
 <div class="mt-20 md:ml-64">
   <div class="w-full max-w-4xl mx-auto">
     <%# Upper Teeth (18-11, 21-28) %>
+    <% unless Rails.env.production? %>
     <div class="flex mb-2">
       <%# Top Left (18-11) %>
       <div class="flex justify-end flex-1">
@@ -28,7 +29,7 @@
       <%# Bottom Left (48-41) %>
       <div class="flex justify-end flex-1">
         <% (48.downto(41)).each do |number| %>
-          <span class="w-8 text-center 2xl:w-10">  
+          <span class="w-8 text-center 2xl:w-10">
             <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
             <span class="text-xs"><%= number %></span>
           </span>
@@ -44,5 +45,6 @@
         <% end %>
       </div>
     </div>
+    <% end %>
   </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_16_095555) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_21_144219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -125,6 +125,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_16_095555) do
     t.index ["patient_id", "health_condition_id"], name: "index_health_records_on_patient_id_and_health_condition_id"
   end
 
+  create_table "patient_diagnoses", force: :cascade do |t|
+    t.bigint "patient_id", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_patient_diagnoses_on_patient_id"
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -157,6 +165,29 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_16_095555) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tooth_diagnoses", force: :cascade do |t|
+    t.integer "tooth_number", null: false
+    t.integer "severity", default: 0
+    t.bigint "diagnosis_id", null: false
+    t.bigint "patient_diagnosis_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diagnosis_id"], name: "index_tooth_diagnoses_on_diagnosis_id"
+    t.index ["patient_diagnosis_id"], name: "index_tooth_diagnoses_on_patient_diagnosis_id"
+  end
+
+  create_table "tooth_diagnosis_treatments", force: :cascade do |t|
+    t.bigint "tooth_diagnosis_id", null: false
+    t.bigint "service_id", null: false
+    t.integer "status", default: 0
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_tooth_diagnosis_treatments_on_service_id"
+    t.index ["tooth_diagnosis_id"], name: "index_tooth_diagnosis_treatments_on_tooth_diagnosis_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -172,4 +203,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_16_095555) do
   add_foreign_key "clinic_users", "clinics"
   add_foreign_key "clinic_users", "users"
   add_foreign_key "diagnoses", "clinics"
+  add_foreign_key "patient_diagnoses", "patients"
+  add_foreign_key "tooth_diagnoses", "diagnoses"
+  add_foreign_key "tooth_diagnoses", "patient_diagnoses"
+  add_foreign_key "tooth_diagnosis_treatments", "services"
+  add_foreign_key "tooth_diagnosis_treatments", "tooth_diagnoses"
 end
