@@ -26,11 +26,18 @@ Rails.application.routes.draw do
       resources :doctors do
         get 'search', on: :collection
       end
+
       resources :patients do
         get 'search', on: :collection
         resources :health_records do
           get 'search', on: :collection
           get 'value_search', on: :collection
+        end
+
+        resources :patient_diagnoses do
+          resources :tooth_diagnoses do
+            resources :tooth_diagnosis_treatments
+          end
         end
       end
       resources :services do

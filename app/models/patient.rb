@@ -3,6 +3,16 @@ class Patient < ApplicationRecord
   belongs_to :clinic
   has_one_attached :profile
 
+  enum :gender, {
+    male: 0,
+    female: 1
+  }
+
+  enum :status, {
+    active: 0,
+    inactive: 1
+  }
+
   has_many :health_records, dependent: :destroy
   has_many :heath_conditions, through: :health_records
 
