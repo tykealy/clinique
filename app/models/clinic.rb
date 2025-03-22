@@ -4,6 +4,7 @@ class Clinic < ApplicationRecord
   has_many :clinic_users, dependent: :destroy
   has_many :users, through: :clinic_users
   has_many :diagnoses, dependent: :destroy
+  has_many :patient_diagnoses, dependent: :destroy
 
   enum :status, { active: 0, inactive: 1 }
 
