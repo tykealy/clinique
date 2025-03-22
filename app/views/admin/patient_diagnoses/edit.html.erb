@@ -1,0 +1,39 @@
+<%= render partial: "admin/shared/sidebar", locals: {tab: 'patients'} %>
+<div class="mt-20 md:ml-64" data-controller="teeth">
+  <div class="px-4 py-4 2xl:px-8 2xl:py-8">
+    <ul class="flex items-center gap-5">
+      <li>
+        <a href="/admin/patients">
+          <button class="hover:bg-secondary py-2.5 pr-7 pl-5 rounded-md flex items-center gap-2 text-base font-semibold text-white transition-all duration-300 bg-primary">
+            <%= render "admin/shared/svg", name: 'back' %>
+            Back
+          </button>
+        </a>
+      </li>
+      <li class="flex-1">
+        <h6 class="text-xl font-semibold leading-8 text-gray-900 2xl:text-2xl"><%= @patient.full_name %> - New Diagnosis</h6>
+      </li>
+    </ul>
+  </div>
+  <%= render partial: "/admin/shared/patient_tab", locals: {tab: "Diagnoses"} %>
+  <div class="flex">
+    <!-- Left Side: Teeth diagram and editor -->
+    <div class="w-1/2 p-2">
+      <div class="mb-4">
+        <%= render partial: "admin/patient_diagnoses/teeth" %>
+      </div>
+      <div class="h-full p-2 border rounded-lg">
+        <!-- Editor or description area -->
+        <div class="diagnosis-description">
+          Diagnosis Description
+        </div>
+      </div>
+    </div>
+    <!-- Right Side: Form with tooth-specific details -->
+    <div class="w-1/2 p-2">
+      <div class="h-full p-2 border rounded-lg ">
+        <%= render partial: "admin/patient_diagnoses/form" %>
+      </div>
+    </div>
+  </div>
+</div>

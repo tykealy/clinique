@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_21_144219) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_22_164026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -130,6 +130,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_21_144219) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "clinic_id", null: false
+    t.index ["clinic_id"], name: "index_patient_diagnoses_on_clinic_id"
     t.index ["patient_id"], name: "index_patient_diagnoses_on_patient_id"
   end
 
@@ -203,6 +205,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_21_144219) do
   add_foreign_key "clinic_users", "clinics"
   add_foreign_key "clinic_users", "users"
   add_foreign_key "diagnoses", "clinics"
+  add_foreign_key "patient_diagnoses", "clinics"
   add_foreign_key "patient_diagnoses", "patients"
   add_foreign_key "tooth_diagnoses", "diagnoses"
   add_foreign_key "tooth_diagnoses", "patient_diagnoses"

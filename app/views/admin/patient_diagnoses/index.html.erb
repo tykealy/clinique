@@ -13,7 +13,22 @@
       <li class="flex-1">
         <h6 class="text-xl font-semibold leading-8 text-gray-900 2xl:text-2xl"><%= @patient.full_name %></h6>
       </li>
+      <li>
+        <%= link_to admin_patient_patient_diagnoses_path(patient_id: @patient.id), data: { turbo_method: :post } do %>
+          <button class="hover:bg-secondary py-2.5 pr-7 pl-5 rounded-lg flex items-center gap-2 text-md 2xl:text-lg font-semibold text-white transition-all duration-300 bg-primary">
+            <%= render "admin/shared/svg", name: 'plus' %>
+            New Diagnosis
+          </button>
+        <% end %>
+      </li>
     </ul>
   </div>
   <%= render partial: "/admin/shared/patient_tab", locals: {tab: "Diagnoses"} %>
+  <% @patient_diagnoses.each do |patient_diagnosis| %>
+    <div class="px-4 py-4 2xl:px-8 2xl:py-8">
+      <%= link_to edit_admin_patient_patient_diagnosis_path(patient_id: @patient.id, id: patient_diagnosis.id) do %>
+        <%= patient_diagnosis.id %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
