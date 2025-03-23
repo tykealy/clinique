@@ -10,10 +10,10 @@ default: &default
 development:
   primary:
     <<: *default
-    database: clinique_dev
+    database: <%= ENV['DB_NAME'] %>
   primary_replica:
     <<: *default
-    database: clinique_dev_replica
+    database: <%= ENV['DB_NAME'] %>
     replica: true
 
 test:
