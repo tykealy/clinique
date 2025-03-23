@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
     // Auto-dismiss after 5 seconds
-    setTimeout(() => this.dismiss(), 3000)
+    setTimeout(() => this.dismiss(), 1000)
   }
 
   dismiss() {

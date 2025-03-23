@@ -19,11 +19,22 @@ module Admin
     end
 
     def create
-      @tooth_diagnosis = @patient_diagnosis.tooth_diagnoses.create!(tooth_diagnosis_params)
+      @tooth_diagnosis = @patient_diagnosis.tooth_diagnoses.new(tooth_diagnosis_params)
       record = @tooth_diagnosis.class.name
-      if @tooth_diagnosis.persisted?
-        redirect_to edit_admin_patient_patient_diagnosis_path(patient_id: @patient_diagnosis.patient_id, id: @patient_diagnosis.id)
+      if @tooth_diagnosis.save
         flash[:success] = I18n.t('flash.created', record: record)
+      else
+        flash[:danger] = I18n.t('flash.danger', record: record)
+      end
+      redirect_to edit_admin_patient_patient_diagnosis_path(patient_id: @patient_diagnosis.patient_id, id: @patient_diagnosis.id)
+    end
+
+    def destroy
+      @tooth_diagnosis = ToothDiagnosis.find(params[:id])
+      @patient_diagnosis = @tooth_diagnosis.patient_diagnosis
+      record = @tooth_diagnosis.class.name
+      if @tooth_diagnosis.destroy
+        flash[:success] = I18n.t('flash.destroyed', record: record)
       else
         flash[:danger] = I18n.t('flash.danger', record: record)
       end

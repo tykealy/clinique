@@ -1,8 +1,8 @@
 <div class="flex">
   <%= f.label :diagnosis, class: "block text-sm 2xl:text-lg font-medium text-gray-700 hidden" %>
   <%= f.select :diagnosis_id, 
-  options_for_select(Diagnosis.where(status: true).map { |d| [d.name, d.id] }), 
-  { include_blank: "Select a diagnosis" }, 
+  options_for_select(Diagnosis.where(status: true).map { |d| [d.name, d.id] }, f.object.diagnosis_id),
+  {},
   class: "flex-1 mt-1 2xl:mt-2 block w-full px-4 py-2 2xl:px-8 2xl:py-4 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm 2xl:text-lg" %>
 
   <%= f.hidden_field :tooth_number %>
