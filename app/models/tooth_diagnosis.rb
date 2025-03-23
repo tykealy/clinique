@@ -1,9 +1,9 @@
 class ToothDiagnosis < ApplicationRecord
   belongs_to :patient_diagnosis
-  belongs_to :diagnosis
 
   delegate :clinic, to: :patient_diagnosis
 
+  belongs_to :diagnosis
   has_many :tooth_diagnosis_treatments, dependent: :destroy
 
   validates :tooth_number, presence: true,

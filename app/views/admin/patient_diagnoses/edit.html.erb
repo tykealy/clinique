@@ -22,7 +22,7 @@
       <div class="mb-4">
         <%= render partial: "admin/patient_diagnoses/teeth" %>
       </div>
-      <div class="h-full p-2 border rounded-lg">
+      <div class="p-2 border rounded-lg ">
         <!-- Editor or description area -->
         <div class="diagnosis-description">
           Diagnosis Description
@@ -30,9 +30,30 @@
       </div>
     </div>
     <!-- Right Side: Form with tooth-specific details -->
-    <div class="w-1/2 p-2">
-      <div class="h-full p-2 border rounded-lg ">
-        <%= render partial: "admin/patient_diagnoses/form" %>
+    <div class="w-1/2 p-4">
+      <div class="p-2 ">
+        <div>
+          <div data-teeth-target="diagnosisForm" class="hidden pl-4 mb-4 border-l-2 border-primary">
+            <%= render partial: "admin/tooth_diagnoses/new", locals: { 
+                tooth_diagnosis: ToothDiagnosis.new, 
+                tooth_number: nil,
+                patient_diagnosis_id: @patient_diagnosis.id
+              } %>
+          </div>
+          <% if @tooth_diagnoses_by_tooth.present? %>
+            <div class="tooth-diagnoses-container">
+              <% @tooth_diagnoses_by_tooth.each do |tooth_number, diagnoses| %>
+                <div class="mb-6 tooth-group">
+                  <div class="pl-4 border-l-2 tooth-diagnoses-list border-primary">
+                    <%= render partial: "admin/tooth_diagnoses/index", locals: { tooth_diagnoses: diagnoses, tooth_number: tooth_number } %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="italic text-gray-500">No tooth diagnoses recorded yet.</p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

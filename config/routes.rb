@@ -34,12 +34,15 @@ Rails.application.routes.draw do
           get 'value_search', on: :collection
         end
 
-        resources :patient_diagnoses do
-          resources :tooth_diagnoses do
-            resources :tooth_diagnosis_treatments
-          end
+        resources :patient_diagnoses, only: %i[index edit create]
+      end
+
+      resources :patient_diagnoses do
+        resources :tooth_diagnoses do
+          resources :tooth_diagnosis_treatments
         end
       end
+
       resources :services do
         member do
           patch :toggle_status

@@ -1,0 +1,10 @@
+<div>
+  <span class="flex items-center" data-teeth-target="toothLabel">
+    <%= "Tooth ##{tooth_number}" %>
+    <%= render "admin/shared/svg", name: 'chevron-right' %>
+  </span>
+  <hr>
+  <%= form_with model: tooth_diagnosis, url: admin_patient_diagnosis_tooth_diagnoses_url(patient_diagnosis_id: patient_diagnosis_id), method: :post do |f| %>
+    <%= render partial: "admin/tooth_diagnoses/form", locals: { f: f } %>
+  <% end %>
+</div>
