@@ -28,7 +28,7 @@ module.exports = {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
       animation: {
-        progress: 'progress 3s linear forwards'
+        progress: 'progress 1s linear forwards'
       },
       keyframes: {
         progress: {

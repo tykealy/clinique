@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["tooth", "diagnosisForm", "toothLabel"]
+  static targets = ["tooth", "diagnosisForm", "toothLabel", "noToothDiagnoses", "toothDeleteButton"]
 
   connect() {
     console.log("Teeth controller connected")
@@ -13,34 +13,34 @@ export default class extends Controller {
 
     this.diagnosisFormTarget.classList.remove("hidden")
     this.toothLabelTarget.textContent = `Tooth #${toothNumber}`
-
+    if (this.hasNoToothDiagnosesTarget) {
+      this.noToothDiagnosesTarget.classList.add("hidden")
+    }
     if (toothNumberInput) {
       toothNumberInput.value = toothNumber
     }
-    this.diagnosisFormTarget.scrollIntoView({ behavior: "smooth" })
+  }
 
-    // Optionally, scroll to the form
-    // const toothNumber = event.currentTarget.dataset.toothNumber;
-    // const patientDiagnosisId = event.currentTarget.dataset.patientDiagnosisId;
-    // try {
-    //   fetch(`/admin/patient_diagnoses/${patientDiagnosisId}/tooth_diagnoses/new?tooth_number=${toothNumber}`, {
-    //     method: "GET",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    //     }
-    //   })
-    //   .then(response => response.text())
-    //   .then(html => {
-    //     if (this.hasDiagnosisFormTarget) {
-    //       this.diagnosisFormTarget.innerHTML = html;
-    //       this.diagnosisFormTarget.classList.remove('hidden');
-    //     } else {
-    //       console.error("Missing diagnosis form target");
-    //     }
-    //   });
-    // } catch (error) {
-    //   console.error("Error creating tooth diagnosis:", error);
-    // }
+  deleteToothDiagnosis(event) {
+    const toothDiagnosisId = event.currentTarget.dataset.toothDiagnosisId
+    const patientDiagnosisId = event.currentTarget.dataset.patientDiagnosisId
+
+    fetch(`/admin/patient_diagnoses/${patientDiagnosisId}/tooth_diagnoses/${toothDiagnosisId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        console.error('Error deleting tooth diagnosis');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
   }
 }
