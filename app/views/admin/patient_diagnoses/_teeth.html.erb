@@ -1,13 +1,13 @@
 <div class="w-full max-w-4xl" data-teeth-target="teethContainer">
   <div class="px-4 py-4 2xl:px-8 2xl:py-8">
     <%# Upper Teeth (18-11, 21-28) %>
-    <div class="flex justify-center mb-2">
+    <div class="flex justify-center mb-2 select-none">
       <%# Top Left (18-11) %>
       <div class="flex">
         <% (18.downto(11)).each do |number| %>
           <span class="w-8 text-center rounded-md 2xl:w-10 hover:bg-gray-200">
             <span class="text-xs"><%= number %></span>
-            <div data-tooth-number="<%= number %>" data-teeth-target="tooth" data-action="dblclick->teeth#dbClickTooth" class="cursor-pointer hover:opacity-75">
+            <div data-patient-diagnosis-id="<%= @patient_diagnosis.id %>" data-tooth-number="<%= number %>" data-teeth-target="tooth" data-action="dblclick->teeth#dbClickTooth" class="cursor-pointer hover:opacity-75">
               <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
             </div>
           </span>
@@ -18,7 +18,7 @@
         <% (21..28).each do |number| %>
           <span class="w-8 text-center rounded-md 2xl:w-10 hover:bg-gray-200">
             <span class="text-xs"><%= number %></span>
-            <div data-tooth-number="<%= number %>" data-teeth-target="tooth" data-action="dblclick->teeth#dbClickTooth" class="cursor-pointer hover:opacity-75">
+            <div data-patient-diagnosis-id="<%= @patient_diagnosis.id %>" data-tooth-number="<%= number %>" data-teeth-target="tooth" data-action="dblclick->teeth#dbClickTooth" class="cursor-pointer hover:opacity-75">
               <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
             </div>
           </span>
@@ -26,12 +26,12 @@
       </div>
     </div>
     <%# Lower Teeth %>
-    <div class="flex justify-center mb-2">
+    <div class="flex justify-center mb-2 select-none">
       <%# Bottom Left (48-41) %>
       <div class="flex">
         <% (48.downto(41)).each do |number| %>
           <span class="w-8 text-center rounded-md 2xl:w-10 hover:bg-gray-200 ">
-            <div data-tooth-number="<%= number %>" data-teeth-target="tooth" data-action="dblclick->teeth#dbClickTooth" class="cursor-pointer hover:opacity-75">
+            <div data-patient-diagnosis-id="<%= @patient_diagnosis.id %>" data-tooth-number="<%= number %>" data-teeth-target="tooth" data-action="dblclick->teeth#dbClickTooth" class="cursor-pointer hover:opacity-75">
               <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
             </div>
             <span class="text-xs"><%= number %></span>
@@ -42,7 +42,7 @@
       <div class="flex">
         <% (31..38).each do |number| %>
           <span class="w-8 text-center rounded-md 2xl:w-10 hover:bg-gray-200">
-            <div data-tooth-number="<%= number %>" data-teeth-target="tooth" data-action="dblclick->teeth#dbClickTooth" class="cursor-pointer hover:opacity-75">
+            <div data-patient-diagnosis-id="<%= @patient_diagnosis.id %>" data-tooth-number="<%= number %>" data-teeth-target="tooth" data-action="dblclick->teeth#dbClickTooth" class="cursor-pointer hover:opacity-75">
               <%= render partial: "admin/shared/teeth/tooth_#{number}" %>
             </div>
             <span class="text-xs"><%= number %></span>

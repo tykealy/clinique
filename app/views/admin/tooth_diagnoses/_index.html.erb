@@ -1,0 +1,12 @@
+<div>
+  <span class="flex items-center">
+    <%= "Tooth ##{tooth_number}" %>
+    <%= render "admin/shared/svg", name: 'chevron-right' %>
+  </span>
+  <hr>
+  <div>
+    <% tooth_diagnoses.each do |tooth_diagnosis| %>
+      <%= tooth_diagnosis.diagnosis.name %>
+    <% end %>
+  </div>
+</div>
