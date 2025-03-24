@@ -33,13 +33,14 @@
     <div class="w-1/2 p-4">
       <div class="p-2 ">
         <div>
-          <div data-teeth-target="diagnosisForm" class="hidden pl-4 mb-4 border-l-2 border-primary">
+          <div data-teeth-target="diagnosisForm" class="hidden pl-4 mb-6 border-l-2 border-primary">
             <%= render partial: "admin/tooth_diagnoses/new", locals: { 
                 tooth_diagnosis: ToothDiagnosis.new, 
                 tooth_number: nil,
                 patient_diagnosis_id: @patient_diagnosis.id
               } %>
           </div>
+        
           <% if @tooth_diagnoses_by_tooth.present? %>
             <div class="tooth-diagnoses-container">
               <% @tooth_diagnoses_by_tooth.each do |tooth_number, diagnoses| %>
