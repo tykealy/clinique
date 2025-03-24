@@ -1,19 +1,18 @@
 module Admin
   class PatientDiagnosesController < BaseController
     before_action :load_patient, only: %i[index edit create]
+    before_action :load_patient_diagnosis, only: %i[edit]
     before_action :load_tooth_diagnosis, only: %i[edit]
     before_action :load_services, only: %i[edit]
+    before_action :load_diagnosed_teeth, only: %i[edit]
 
     def index
       @patient_diagnoses = @patient.patient_diagnoses
     end
 
     def edit
-      @patient_diagnosis = PatientDiagnosis.find(params[:id])
       @patient = @patient_diagnosis.patient
-
-      # Fetch all tooth diagnoses for this patient diagnosis and group by tooth number
-      @tooth_diagnoses_by_tooth = ToothDiagnosesQuery.new(@patient_diagnosis.id).fetch_tooth_diagnoses
+      @services = Service.all
     end
 
     def create
@@ -34,12 +33,20 @@ module Admin
       @patient = Patient.find(params[:patient_id])
     end
 
+    def load_patient_diagnosis
+      @patient_diagnosis ||= PatientDiagnosis.find(params[:id])
+    end
+
     def load_tooth_diagnosis
       @tooth_diagnosis = ToothDiagnosis.new
     end
 
     def load_services
       @services = Service.all
+    end
+
+    def load_diagnosed_teeth
+      @diagnosed_teeth = ToothDiagnosesQuery.new(@patient_diagnosis.id).fetch_tooth_diagnoses
     end
   end
 end
