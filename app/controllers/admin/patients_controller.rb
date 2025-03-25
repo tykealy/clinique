@@ -22,7 +22,7 @@ module Admin
                    Patient
                      .where('first_name ILIKE :search OR last_name ILIKE :search OR phone_number ILIKE :search', search: "#{search}%")
                      .select(:id, :first_name, :last_name, :phone_number)
-                     .limit(5)
+                     .limit(12)
                      .as_json(only: %i[id first_name last_name phone_number])
                  else
                    []

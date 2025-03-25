@@ -13,10 +13,12 @@ export default class extends Controller {
     if(response.ok){
       const data = await response.text();
       this.appointmentCardTarget.innerHTML = data;
+      document.body.style.overflow = 'hidden';
     }
   }
 
   close(e) {
     this.appointmentCardTarget.innerHTML = "";
+    document.body.style.overflow = 'auto';  
   }
 }
