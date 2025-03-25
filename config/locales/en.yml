@@ -52,3 +52,5 @@ en:
     confirmed: "Confirmed"
     unavailable: "Unavailable"
     cancelled: "Cancelled"
+  tooth_diagnosis_treatments:
+    select_treatments: "Select Treatments"
