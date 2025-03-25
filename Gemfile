@@ -72,7 +72,7 @@ gem 'rspec-core', '~> 3.13'
 
 gem 'rack-cors', '~> 2.0'
 
-gem 'byebug', '~> 11.1'
+gem 'byebug', '~> 12.0'
 
 gem 'tailwindcss-rails', '~> 3.2'
 
