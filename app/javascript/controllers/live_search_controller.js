@@ -2,6 +2,16 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["results", "patientSelect", "container"];
   
+  connect() {
+    // Add event listener for blur event on the patient search input
+    document.getElementById("patient-search").addEventListener("blur", () => {
+      // Small delay to allow for clicking on the results
+      setTimeout(() => {
+        this.resultsTarget.classList.add("hidden");
+      }, 200);
+    });
+  }
+
   async search(event) {
     const query = event.target.value.trim();
 
@@ -30,7 +40,7 @@ export default class extends Controller {
     const resultItems = patients
     .map(
       (patient) => `
-        <li class="p-2 hover:bg-gray-100 cursor-pointer rounded-md" 
+        <li class="p-2  hover:bg-gray-100 cursor-pointer rounded-md" 
             data-action="click->live-search#selectPatient" 
             data-patient-id="${patient.id}" 
             data-patient-phone-number="${patient.phone_number}"

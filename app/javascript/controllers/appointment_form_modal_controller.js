@@ -4,6 +4,7 @@ export default class extends Controller {
 
   closeModal(e){
     this.containerTarget.classList.add("hidden");
+    document.body.style.overflow = 'auto';
   }
 
   toggleNewModal(e) {
@@ -11,6 +12,7 @@ export default class extends Controller {
     const timeHour = e.currentTarget.dataset.time; 
     this.formTarget.innerHTML = "";
     this.containerTarget.classList.remove("hidden");
+    document.body.style.overflow = 'hidden';
 
     const dateField = this.containerTarget.querySelector('input[type="date"]');
     if (dateField) {
@@ -31,6 +33,11 @@ export default class extends Controller {
       const data = await response.text();
       this.appointmentCardTarget.innerHTML = "";
       this.formTarget.innerHTML = data;
+      document.body.style.overflow = 'hidden';
     }
+  }
+
+  disconnect() {
+    document.body.style.overflow = 'auto';
   }
 }
