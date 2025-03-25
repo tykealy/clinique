@@ -42,11 +42,11 @@
           </div>
         
           <% if @diagnosed_teeth.present? %>
-            <div class="tooth-diagnoses-container">
+            <div data-controller="tooth-diagnoses">
               <% @diagnosed_teeth.each do |tooth_number, diagnoses| %>
                 <div class="mb-6 tooth-group">
                   <div class="pl-4 border-l-2 tooth-diagnoses-list border-primary">
-                    <%= render partial: "admin/tooth_diagnoses/index", locals: { tooth_diagnoses: diagnoses, tooth_number: tooth_number } %>
+                    <%= render partial: "admin/tooth_diagnoses/index", locals: { tooth_diagnoses: diagnoses, tooth_number: tooth_number, patient_diagnosis_id: @patient_diagnosis.id } %>
                   </div>
                 </div>
               <% end %>
