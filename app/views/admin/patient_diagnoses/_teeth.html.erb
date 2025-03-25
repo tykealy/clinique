@@ -1,5 +1,4 @@
 <div class="w-full max-w-4xl" 
-    data-teeth-target="teethContainer" 
     data-patient-diagnosis-id="<%= @patient_diagnosis.id %>">
   <div class="px-4 py-4 2xl:px-8 2xl:py-8">
     <%# Upper Teeth (18-11, 21-28) %>
@@ -11,8 +10,8 @@
           <span class="w-8 text-center rounded-md 2xl:w-10 hover:bg-gray-200">
             <span class="text-xs"><%= number %></span>
             <div data-tooth-number="<%= number %>" 
-                 data-teeth-target="tooth" 
-                 data-action="dblclick->teeth#dbClickTooth"
+              data-action="dblclick->teeth#dbClickTooth"
+              data-teeth-target="tooth" 
               data-diagnosed="<%= has_diagnosis ? 'true' : 'false' %>"
               class="cursor-pointer hover:opacity-75">
               <%= render partial: "admin/shared/teeth/tooth_#{number}" %>

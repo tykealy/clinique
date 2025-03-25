@@ -1,4 +1,4 @@
-<div data-teeth-target="serviceSelect dropdown"
+<div data-tooth-diagnoses-target="serviceSelect dropdown"
     data-tooth-diagnosis-id="<%= tooth_diagnosis.id %>"
     class="relative hidden mt-1"
     style="width: calc(100% - 40px)">
@@ -8,14 +8,14 @@
       <input type="text" 
             class="w-full px-3 py-2 bg-gray-100 border-none rounded-md focus:ring-primary focus:border-primary"
             placeholder="Search options..."
-            data-action="input->teeth#filterServices">
+            data-action="input->tooth-diagnoses#filterServices">
     </div>
     <div class="p-2 overflow-y-auto max-h-60">
       <% services.each do |service| %>
         <label class="flex items-center p-2 rounded cursor-pointer hover:bg-gray-100">
           <input type="checkbox" 
                 class="mr-2 border-gray-300 rounded text-primary focus:ring-primary"
-                data-action="change->teeth#updateMultiDiagnosis"
+                data-action="change->tooth-diagnoses#updateMultiDiagnosis"
           data-service-id="<%= service.id %>"
           data-tooth-diagnosis-id="<%= tooth_diagnosis.id %>"
           <%= 'checked' if tooth_diagnosis.tooth_diagnosis_treatments.include?(service) %>>

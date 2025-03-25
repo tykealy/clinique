@@ -1,74 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["tooth" ,"noToothDiagnoses", "toothLabel", 
-    "diagnosisForm",  "toothDeleteButton", "diagnosisButton", 
+  static targets = [  "toothDeleteButton", "diagnosisButton", 
     "serviceSelect", "dropdown", "toothDiagnosisForm"]
 
   connect() {
-    this.highlightedTooth = null;
-    this.highlightDiagnosedTeeth();
-  }
-
-  highlightDiagnosedTeeth() {
-    const diagnosedTeeth = this.element.querySelectorAll('[data-diagnosed="true"]');
-    diagnosedTeeth.forEach(tooth => {
-      this.highlightTooth(tooth);
-    });
-  }
-
-  highlightTooth(tooth) {
-    const paths = tooth.querySelectorAll('svg path');
-    
-    if (paths.length >= 1) {
-      paths[0].setAttribute('style', 'fill:#e6f7ff; stroke:#0099cc; stroke-width:1');
-    }
-    
-    if (paths.length >= 2) {
-      paths[1].setAttribute('style', 'fill:#ccf2ff');
-    }
-  }
-
-  dbClickTooth(event) {
-    const clickedTooth = event.currentTarget;
-    const toothNumber = clickedTooth.dataset.toothNumber;
-
-    // If the tooth is already diagnosed, ignore the click
-    if(clickedTooth.getAttribute('data-diagnosed') === 'true') {
-      return;
-    }
-    
-    //If the clicked tooth is not the currently highlighted tooth
-    // unhighlight the currently highlighted tooth
-    if (this.highlightedTooth && this.highlightedTooth !== clickedTooth) {
-        this.unhighlightTooth(this.highlightedTooth);
-    }
-    
-    if (this.hasNoToothDiagnosesTarget) {
-      this.noToothDiagnosesTarget.classList.add("hidden")
-    }
-    
-    this.highlightedTooth = clickedTooth;
-    this.toothLabelTarget.textContent = `Tooth #${toothNumber}`
-    this.highlightTooth(clickedTooth);
-    
-    const diagnosisFormWrapper = this.diagnosisFormTarget;
-    const form = diagnosisFormWrapper.querySelector('form');
-    diagnosisFormWrapper.classList.remove('hidden');
-
-    this.updateFormForTooth(toothNumber, form);
-  }
-
-  unhighlightTooth(tooth) {
-    const paths = tooth.querySelectorAll('svg path');
-    
-    if (paths.length >= 1) {
-      paths[0].setAttribute('style', 'fill:#fff');
-    }
-    
-    if (paths.length >= 2) {
-      paths[1].setAttribute('style', '');
-    }
+    console.log("tooth-diagnoses connected");
   }
 
   updateFormForTooth(toothNumber, form) {
@@ -79,13 +16,7 @@ export default class extends Controller {
     }
   }
 
-
-
-
-
-
-
-  toggleDiagnosisForm() {
+  toggleDiagnosisForm(event) {
     const toothNumber = event.currentTarget.dataset.toothNumber
     const form = this.toothDiagnosisFormTargets.find(
       form => form.dataset.toothNumber === toothNumber
@@ -130,11 +61,11 @@ export default class extends Controller {
 
   toggleServiceSelect(event) {
     // Prevent the event from triggering twice
-    if (!event.target.closest('[data-teeth-target="diagnosisButton"]')) return
+    if (!event.target.closest('[data-tooth-diagnoses-target="diagnosisButton"]')) return
     
     const button = event.currentTarget
     const toothDiagnosisId = button.dataset.toothDiagnosisId
-    
+
     // Hide all other dropdowns first
     this.serviceSelectTargets.forEach(select => {
       if (select.dataset.toothDiagnosisId !== toothDiagnosisId) {
@@ -147,24 +78,34 @@ export default class extends Controller {
       select => select.dataset.toothDiagnosisId === toothDiagnosisId
     )
     dropdown.classList.toggle('hidden')
-
-    // After toggling visibility, scroll the dropdown into view
-    if (!dropdown.classList.contains('hidden')) {
-      setTimeout(() => {
-        dropdown.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-      }, 100);
-    }
   }
 
   filterServices(event) {
     const searchTerm = event.target.value.toLowerCase()
-    const dropdown = event.target.closest('[data-teeth-target="serviceSelect"]')
+    const dropdown = event.target.closest('[data-tooth-diagnoses-target~="serviceSelect"]')
     const labels = dropdown.querySelectorAll('label')
     
     labels.forEach(label => {
       const text = label.textContent.toLowerCase()
       label.style.display = text.includes(searchTerm) ? '' : 'none'
     })
+  }
+
+  handleClickAway(event) {
+    // Don't close if clicking inside a dropdown or on a button that opens the dropdown
+    const isClickInsideDropdown = this.dropdownTargets.some(dropdown => 
+      dropdown.contains(event.target)
+    )
+    const isClickOnButton = this.diagnosisButtonTargets.some(button => 
+      button.contains(event.target)
+    )
+
+    if (!isClickInsideDropdown && !isClickOnButton) {
+      // Hide all dropdowns
+      this.serviceSelectTargets.forEach(select => {
+        select.classList.add('hidden')
+      })
+    }
   }
 
   updateMultiDiagnosis(event) {
@@ -193,22 +134,5 @@ export default class extends Controller {
       ).querySelector('button')
       button.textContent = data.selected_services.join(' | ')
     })
-  }
-
-  handleClickAway(event) {
-    // Don't close if clicking inside a dropdown or on a button that opens the dropdown
-    const isClickInsideDropdown = this.dropdownTargets.some(dropdown => 
-      dropdown.contains(event.target)
-    )
-    const isClickOnButton = this.diagnosisButtonTargets.some(button => 
-      button.contains(event.target)
-    )
-
-    if (!isClickInsideDropdown && !isClickOnButton) {
-      // Hide all dropdowns
-      this.serviceSelectTargets.forEach(select => {
-        select.classList.add('hidden')
-      })
-    }
   }
 }
