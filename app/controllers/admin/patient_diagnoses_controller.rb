@@ -5,7 +5,7 @@ module Admin
     before_action :load_tooth_diagnosis, only: %i[edit]
     before_action :load_services, only: %i[edit]
     before_action :load_diagnosed_teeth, only: %i[edit]
-
+    before_action :load_diagnosis, only: %i[edit]
     def index
       @patient_diagnoses = @patient.patient_diagnoses
     end
@@ -39,6 +39,10 @@ module Admin
 
     def load_tooth_diagnosis
       @tooth_diagnosis = ToothDiagnosis.new
+    end
+
+    def load_diagnosis
+      @diagnosis = Diagnosis.where(status: true)
     end
 
     def load_services

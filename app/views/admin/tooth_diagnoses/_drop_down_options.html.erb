@@ -11,14 +11,24 @@
             data-action="input->tooth-diagnoses#filterServices">
     </div>
     <div class="p-2 overflow-y-auto max-h-60">
-      <% services.each do |service| %>
+      <% sorted_services = services.sort_by do |service|
+        treatment = tooth_diagnosis.tooth_diagnosis_treatments.find { |t| t.service_id == service.id }
+        [treatment.present? ? 0 : 1, service.name]
+      end %>
+
+      <% sorted_services.each do |service| %>
+        <% treatment = tooth_diagnosis.tooth_diagnosis_treatments.find { |t| t.service_id == service.id } %>
         <label class="flex items-center p-2 rounded cursor-pointer hover:bg-gray-100">
-          <input type="checkbox" 
-                class="mr-2 border-gray-300 rounded text-primary focus:ring-primary"
-                data-action="change->tooth-diagnoses#updateMultiDiagnosis"
-          data-service-id="<%= service.id %>"
-          data-tooth-diagnosis-id="<%= tooth_diagnosis.id %>"
-          <%= 'checked' if tooth_diagnosis.tooth_diagnosis_treatments.include?(service) %>>
+          <input type="checkbox"
+                 name="tooth_diagnosis[service_ids][]"
+                 value="<%= service.id %>"
+                 class="mr-2 border-gray-300 rounded text-primary focus:ring-primary"
+                 data-action="change->tooth-diagnoses#updateMultiDiagnosis"
+                 data-service-id="<%= service.id %>"
+                 data-tooth-diagnosis-id="<%= tooth_diagnosis.id %>"
+                 data-patient-diagnosis-id="<%= patient_diagnosis_id %>"
+                 data-treatment-id="<%= treatment&.id %>"
+                 <%= 'checked' if treatment.present? %>>
           <span class="text-sm"><%= service.name %></span>
         </label>
       <% end %>
