@@ -113,26 +113,56 @@ export default class extends Controller {
     const serviceId = checkbox.dataset.serviceId
     const toothDiagnosisId = checkbox.dataset.toothDiagnosisId
     const isChecked = checkbox.checked
+    const patientDiagnosisId = checkbox.dataset.patientDiagnosisId
+    const treatmentId = event.target.dataset.treatmentId;
+    const url = `/admin/patient_diagnoses/${patientDiagnosisId}/tooth_diagnoses/${toothDiagnosisId}/tooth_diagnosis_treatments`
 
-    // Make AJAX call to update the diagnoses
-    fetch(`/admin/tooth_diagnoses/${toothDiagnosisId}/update_services`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
-      },
-      body: JSON.stringify({ 
-        service_id: serviceId,
-        checked: isChecked 
+    if (isChecked) {
+      // Add treatment
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+        },
+        body: JSON.stringify({
+          tooth_diagnosis_treatment: {
+            service_id: serviceId,
+            tooth_diagnosis_id: toothDiagnosisId
+          }
+        })
       })
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Update the button text with all selected services
-      const button = this.diagnosisButtonTargets.find(
-        btn => btn.dataset.toothDiagnosisId === toothDiagnosisId
-      ).querySelector('button')
-      button.textContent = data.selected_services.join(' | ')
-    })
+      .then(response => response.json())
+      .then(data => {
+        if(!data.success) {
+          checkbox.checked = false; 
+          alert('Error:', data.errors)
+        }
+      })
+      .catch(error => {
+        alert('An error occurred while adding the treatment');
+        checkbox.checked = false; 
+      })
+    } else {
+      // Remove treatment
+      fetch(`${url}/${treatmentId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(!data.success) {
+          checkbox.checked = true; 
+          alert.error('Error:', data.errors)
+        }
+      })
+      .catch(error => {
+        alert('An error occurred while deleting the treatment');
+        checkbox.checked = true; 
+      })
+    }
   }
 }

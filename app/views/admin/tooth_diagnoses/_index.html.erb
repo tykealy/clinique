@@ -39,13 +39,13 @@
           <button 
             data-tooth-diagnoses-target="toothDeleteButton" 
             data-tooth-diagnosis-id="<%= tooth_diagnosis.id %>"
-            data-patient-diagnosis-id="<%= tooth_diagnosis.patient_diagnosis_id %>"
+            data-patient-diagnosis-id="<%= patient_diagnosis_id %>"
             data-action="tooth-diagnoses#deleteToothDiagnosis"
             class="px-4 py-2 text-lg font-bold text-red-400 transition-all duration-300 hover:text-red-600">
             -
           </button>
         </div>
-        <%= render "admin/tooth_diagnoses/drop_down_options", services: @services, tooth_diagnosis: tooth_diagnosis %>
+        <%= render "admin/tooth_diagnoses/drop_down_options", services: @services, tooth_diagnosis: tooth_diagnosis, patient_diagnosis_id: patient_diagnosis_id %>
       </div>
     <% end %>
   </div>
