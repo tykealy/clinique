@@ -34,7 +34,7 @@ Rails.application.routes.draw do
           get 'value_search', on: :collection
         end
 
-        resources :patient_diagnoses, only: %i[index edit create]
+        resources :patient_diagnoses, only: %i[index edit create update]
       end
 
       resources :patient_diagnoses do

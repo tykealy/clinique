@@ -1,7 +1,9 @@
-<div class="px-4 py-4 2xl:px-8 2xl:py-8">
-  <div class="grid grid-cols-2 gap-4">
-    <div class="col-span-2">
-      <h6 class="text-xl font-semibold leading-8 text-gray-900 2xl:text-2xl">Diagnosis</h6>
-    </div>
+<%= form_with model: @patient_diagnosis, url: admin_patient_patient_diagnosis_path(patient_id: @patient.id, id: @patient_diagnosis.id), method: :patch do |f| %>
+  <span class="flex items-center justify-between p-1 font-semibold">
+    <span class="text-gray-900">Diagnosis Description</span>
+    <%= f.submit "Save", class: "px-4  text-white bg-primary rounded-md" %>
+  </span>
+  <div class="w-full">
+    <%= f.text_area :description, rows: 4, class: "mt-1 2xl:mt-2 block 2xl:h-52 h-44 w-full px-4 py-2 2xl:px-8 2xl:py-4 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm 2xl:text-lg" %>
   </div>
-</div>
+<% end %>
