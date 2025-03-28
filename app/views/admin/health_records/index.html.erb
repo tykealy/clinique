@@ -1,5 +1,5 @@
 <%= render partial: "/admin/shared/sidebar", locals: {tab: 'patients'} %>
-<div class="mt-20 md:ml-64">
+<div class="mt-20 lg:ml-64">
   <div class="px-4 py-4 2xl:px-8 2xl:py-8">
     <ul class="flex items-center gap-5">
       <li>
@@ -17,7 +17,7 @@
   </div>
   <%= render partial: "/admin/shared/patient_tab", locals: {tab: "Health Records"} %>
   <%= render partial: 'new' %>
-  <section class="grid grid-cols-12 gap-4 px-1 pb-4 mx-4 bg-white border-b-2 rounded-lg rounded-t-none 2xl:mx-8 md:px-4 border-x-2" data-controller="patient-health-records">
+  <section class="grid grid-cols-12 gap-4 px-1 pb-4 mx-4 bg-white border-b-2 rounded-lg rounded-t-none 2xl:mx-8 lg:px-4 border-x-2" data-controller="patient-health-records">
     <% @health_records.each do |record| %>
       <%= render partial: 'record', locals:{record:record} %>
     <% end %>

@@ -1,7 +1,7 @@
 <%= render partial: "/admin/shared/sidebar", locals: {tab: 'appointments'} %>
 <% today =  Time.zone.today %>
 <% new_appointment = Appointment.new %>
-<div class="mt-20 md:ml-64" data-controller="appointment-form-modal appointment-card">
+<div class="mt-20 lg:ml-64" data-controller="appointment-form-modal appointment-card">
   <div data-appointment-card-target="appointmentCard" data-appointment-form-modal-target="appointmentCard" >
   </div>
   <div data-appointment-form-modal-target="form"></div>
