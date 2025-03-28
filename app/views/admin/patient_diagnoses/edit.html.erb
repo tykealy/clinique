@@ -1,5 +1,5 @@
 <%= render partial: "admin/shared/sidebar", locals: {tab: 'patients'} %>
-<div class="mt-20 md:ml-64" data-controller="teeth">
+<div class="mt-20 lg:ml-64" data-controller="teeth">
   <div class="px-4 py-4 2xl:px-8 2xl:py-8">
     <ul class="flex items-center gap-5">
       <li>
@@ -16,22 +16,25 @@
     </ul>
   </div>
   <%= render partial: "/admin/shared/patient_tab", locals: {tab: "Diagnoses"} %>
-  <div class="flex">
-    <!-- Left Side: Teeth diagram and editor -->
-    <div class="w-1/2 p-2">
-      <div class="mb-4">
-        <%= render partial: "admin/patient_diagnoses/teeth" %>
-      </div>
-      <div class="p-2 border rounded-lg ">
-        <!-- Editor or description area -->
-        <div class="diagnosis-description">
-          Diagnosis Description
+  <div class="flex flex-col xl:flex-row">
+    <!-- Left Side: Teeth diagram -->
+    <div class="w-full xl:w-1/2">
+      <div class="p-2">
+        <div class="mb-4">
+          <%= render partial: "admin/patient_diagnoses/teeth" %>
+        </div>
+        <!-- Description Area (Hidden on mobile) -->
+        <div class="hidden p-2 xl:block">
+          <div class="diagnosis-description">
+            <%= render partial: "admin/patient_diagnoses/form", locals: { patient_diagnosis: @patient_diagnosis } %>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Right Side: Form with tooth-specific details -->
-    <div class="w-1/2 p-4">
-      <div class="p-2 ">
+
+    <!-- Right Side: Tooth diagnoses -->
+    <div class="w-full xl:w-1/2">
+      <div class="p-4">
         <div>
           <div data-teeth-target="diagnosisForm" class="hidden pl-4 mb-6 border-l-2 border-primary">
             <%= render partial: "admin/tooth_diagnoses/new", locals: { 
@@ -52,9 +55,18 @@
               <% end %>
             </div>
           <% else %>
-            <p class="italic text-gray-500" data-teeth-target="noToothDiagnoses">No tooth diagnoses recorded yet.</p>
+            <p class="italic text-center text-gray-500" data-teeth-target="noToothDiagnoses"><%= I18n.t('tooth_diagnosis_treatments.no_tooth_diagnoses') %></p>
           <% end %>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Description Area (Mobile Only) -->
+  <div class="block p-4 xl:hidden">
+    <div class="p-2">
+      <div class="diagnosis-description">
+        <%= render partial: "admin/patient_diagnoses/form", locals: { patient_diagnosis: @patient_diagnosis } %>
       </div>
     </div>
   </div>
