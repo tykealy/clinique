@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_22_164026) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_28_173542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -176,6 +176,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_22_164026) do
     t.datetime "updated_at", null: false
     t.index ["diagnosis_id"], name: "index_tooth_diagnoses_on_diagnosis_id"
     t.index ["patient_diagnosis_id"], name: "index_tooth_diagnoses_on_patient_diagnosis_id"
+    t.index ["tooth_number", "patient_diagnosis_id", "diagnosis_id"], name: "idx_on_tooth_number_patient_diagnosis_id_diagnosis__5b995e5e7f", unique: true
   end
 
   create_table "tooth_diagnosis_treatments", force: :cascade do |t|
