@@ -54,3 +54,4 @@ en:
     cancelled: "Cancelled"
   tooth_diagnosis_treatments:
     select_treatments: "Select Treatments"
+    no_tooth_diagnoses: "No tooth diagnoses recorded yet."
