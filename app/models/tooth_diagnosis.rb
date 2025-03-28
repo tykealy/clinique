@@ -10,6 +10,8 @@ class ToothDiagnosis < ApplicationRecord
                            numericality: { only_integer: true },
                            inclusion: { in: 11..48 } # FDI tooth notation
 
+  validates :diagnosis_id, uniqueness: { scope: %i[tooth_number patient_diagnosis_id diagnosis_id] }
+
   enum :severity, {
     mild: 0,
     moderate: 1,

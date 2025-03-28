@@ -4,6 +4,7 @@ module Admin
     before_action :authenticate_user!
     before_action :current_clinic
     before_action :load_appointment_count
+    before_action :load_record
 
     def current_clinic
       @current_clinic ||= current_user.clinics.first
@@ -15,6 +16,33 @@ module Admin
 
     def load_appointment_count
       @today_appointment_count ||= Appointment.for_clinic(@current_clinic).confirmed_for_date(Time.zone.today).count
+    end
+
+    protected
+
+    def load_record
+      @record = if model_exists?
+                  controller_name.classify.constantize.model_name.human
+                else
+                  controller_name.humanize
+                end
+    end
+
+    private
+
+    def model_exists?
+      controller_name.classify.constantize
+      true
+    rescue NameError
+      false
+    end
+
+    def model_class
+      controller_name.classify.constantize
+    end
+
+    def record_name
+      model_class.model_name.human
     end
   end
 end

@@ -4,9 +4,8 @@ export default class extends Controller {
   static targets = [  "toothDeleteButton", "diagnosisButton", 
     "serviceSelect", "dropdown", "toothDiagnosisForm"]
 
-  connect() {
-    console.log("tooth-diagnoses connected");
-  }
+  // This is used to check if the user has added or removed a treatment from the tooth diagnosis
+  hasChanged = false;
 
   updateFormForTooth(toothNumber, form) {
     const toothNumberField = form.querySelector('[name="tooth_diagnosis[tooth_number]"]');
@@ -24,7 +23,6 @@ export default class extends Controller {
     this.updateFormForTooth(toothNumber, form)
     form.classList.toggle('hidden')
   }
-
 
   deleteToothDiagnosis(event) {
     const toothDiagnosisId = event.currentTarget.dataset.toothDiagnosisId
@@ -49,15 +47,6 @@ export default class extends Controller {
     });
   }
 
-  handleDiagnosisSaved(toothNumber) {
-    const diagnosedTooth = this.toothTargets.find(tooth => 
-      tooth.dataset.toothNumber === toothNumber.toString()
-    );
-    
-    if (diagnosedTooth) {
-      diagnosedTooth.setAttribute('data-diagnosed', 'true');
-    }
-  }
 
   toggleServiceSelect(event) {
     // Prevent the event from triggering twice
@@ -105,6 +94,9 @@ export default class extends Controller {
       this.serviceSelectTargets.forEach(select => {
         select.classList.add('hidden')
       })
+      if (this.hasChanged) {
+        window.location.reload();
+      }
     }
   }
 
@@ -137,6 +129,8 @@ export default class extends Controller {
         if(!data.success) {
           checkbox.checked = false; 
           alert('Error:', data.errors)
+        }else {
+          this.hasChanged = true;
         }
       })
       .catch(error => {
@@ -157,6 +151,8 @@ export default class extends Controller {
         if(!data.success) {
           checkbox.checked = true; 
           alert.error('Error:', data.errors)
+        }else {
+          this.hasChanged = true;
         }
       })
       .catch(error => {

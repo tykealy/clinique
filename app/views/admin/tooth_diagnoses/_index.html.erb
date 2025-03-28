@@ -21,7 +21,7 @@
     <% tooth_diagnoses.each do |tooth_diagnosis| %>
       <div class="mt-3 mb-3">
         <div class="flex">
-          <div class="flex flex-1" 
+          <div class="flex flex-1 min-w-0" 
             data-action="click->tooth-diagnoses#toggleServiceSelect"
             data-tooth-diagnoses-target="diagnosisButton"
             data-tooth-diagnosis-id="<%= tooth_diagnosis.id %>">
@@ -31,9 +31,17 @@
               <%= tooth_diagnosis.diagnosis.name %>
             </button>
             <button type="button"
-            class="flex items-center justify-between flex-1 px-2 py-2 mt-1 border border-gray-300 rounded-r-md 2xl:mt-2 focus:ring-primary focus:border-primary sm:text-sm 2xl:text-lg" >
-              <%= I18n.t('tooth_diagnosis_treatments.select_treatments') %>
-              <%= render "admin/shared/svg", name: 'chevron-right' %>
+              class="flex items-center flex-1 min-w-0 px-2 py-2 mt-1 border border-gray-300 rounded-r-md 2xl:mt-2 focus:ring-primary focus:border-primary sm:text-sm 2xl:text-lg" >
+                <% if tooth_diagnosis.tooth_diagnosis_treatments.any? %>
+                  <div class="flex-1 min-w-0 truncate text-start">
+                    <%= tooth_diagnosis.tooth_diagnosis_treatments.map { |treatment| treatment.treatment.name }.join(', ') %>
+                  </div>
+                  <div class="flex-shrink-0 ml-2">
+                    <%= render "admin/shared/svg", name: 'chevron-right' %>
+                  </div>
+                <% else %>
+                  <%= I18n.t('tooth_diagnosis_treatments.select_treatments') %>
+                <% end %>
             </button>
           </div>
           <button 
