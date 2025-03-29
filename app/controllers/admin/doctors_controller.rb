@@ -9,6 +9,8 @@ module Admin
       @doctor = Doctor.new
     end
 
+    def edit; end
+
     def create
       @doctor = Doctor.new(doctor_params)
       @doctor.clinic_id = @current_clinic.id

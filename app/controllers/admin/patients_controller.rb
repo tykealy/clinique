@@ -15,6 +15,8 @@ module Admin
       @patient = Patient.new
     end
 
+    def edit; end
+
     def search
       search = params[:search].to_s.strip
 

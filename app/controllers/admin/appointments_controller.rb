@@ -18,6 +18,8 @@ module Admin
       render partial: 'appointment_card', locals: { appointment: @appointment }
     end
 
+    def new; end
+
     def edit
       @appointment = Appointment.find(params[:id])
       @patients = Patient.where(id: @appointment.patient_id)
@@ -52,6 +54,8 @@ module Admin
         flash[:danger] = I18n.t('flash.danger', record: @appointment.class.name)
       end
     end
+
+    def destroy; end
 
     private
 

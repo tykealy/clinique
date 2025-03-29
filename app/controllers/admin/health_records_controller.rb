@@ -36,6 +36,10 @@ module Admin
       render json: condition_value
     end
 
+    def new; end
+
+    def edit; end
+
     def create
       params = health_record_params
       health_condition = HealthCondition.find_or_create_by(name: params[:health_condition_name])
@@ -50,6 +54,8 @@ module Admin
       flash[:success] = I18n.t('flash.created', record: @record)
       redirect_to admin_patient_health_records_path(@patient)
     end
+
+    def update; end
 
     def destroy
       health_record = @patient.health_records.find(params[:id])

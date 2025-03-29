@@ -4,6 +4,8 @@ module Admin
 
     def new; end
 
+    def edit; end
+
     def create
       @tooth_diagnosis_treatment = ToothDiagnosisTreatment.new(tooth_diagnosis_treatment_params)
       if @tooth_diagnosis_treatment.save
@@ -12,6 +14,8 @@ module Admin
         render json: { success: false, errors: @tooth_diagnosis_treatment.errors.full_messages }
       end
     end
+
+    def update; end
 
     def destroy
       @tooth_diagnosis_treatment = ToothDiagnosisTreatment.find(params[:id])

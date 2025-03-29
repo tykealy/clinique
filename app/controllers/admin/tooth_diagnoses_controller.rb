@@ -18,6 +18,8 @@ module Admin
       end
     end
 
+    def edit; end
+
     def create
       @tooth_diagnosis = @patient_diagnosis.tooth_diagnoses.new(tooth_diagnosis_params)
       if @tooth_diagnosis.save
@@ -27,6 +29,8 @@ module Admin
       end
       redirect_to edit_admin_patient_patient_diagnosis_path(patient_id: @patient_diagnosis.patient_id, id: @patient_diagnosis.id)
     end
+
+    def update; end
 
     def destroy
       @tooth_diagnosis = ToothDiagnosis.find(params[:id])
