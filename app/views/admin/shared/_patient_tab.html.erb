@@ -1,18 +1,18 @@
-<div class="p-2 mx-4 mb-5 bg-white border-2 rounded-lg 2xl:mx-8 ">
-  <ul class="flex w-full gap-6 overflow-auto">
-    <li class="text-sm 2xl:text-lg py-2 px-4 rounded-md <%= 'bg-primary text-white'if tab=="General" %> ">
+<div class="p-2 mx-4 mb-5 bg-white border-2 rounded-lg 2xl:mx-8">
+  <ul class="flex w-full gap-2 overflow-x-auto md:gap-6 whitespace-nowrap">
+    <li class="text-xs md:text-sm 2xl:text-lg py-2 px-2 md:px-4 rounded-md <%= 'bg-primary text-white'if tab=="General" %>">
       <%= link_to "General", edit_admin_patient_path(id: @patient.id) %>
     </li>
-    <li class="px-4 text-sm 2xl:text-lg py-2 rounded-md <%= 'bg-primary text-white'if tab=="Appointments" %> ">
+   <li class="text-xs md:text-sm 2xl:text-lg py-2 px-2 md:px-4 rounded-md <%= 'bg-primary text-white'if tab=="Appointments" %>">
       Appointments
     </li>
-    <li class="px-4 text-sm 2xl:text-lg py-2 rounded-md <%= 'bg-primary text-white'if tab=='Health Records' %>">
+    <li class="text-xs md:text-sm 2xl:text-lg py-2 px-2 md:px-4 rounded-md <%= 'bg-primary text-white'if tab=='Health Records' %>">
       <%= link_to "Medical History", admin_patient_health_records_path(patient_id: @patient.id) %>
     </li>
-    <li class="px-4 text-sm 2xl:text-lg py-2 rounded-md <%= 'bg-primary text-white'if tab=='Diagnoses' %>">
+    <li class="text-xs md:text-sm 2xl:text-lg py-2 px-2 md:px-4 rounded-md <%= 'bg-primary text-white'if tab=='Diagnoses' %>">
       <%= link_to "Diagnoses", admin_patient_patient_diagnoses_path(patient_id: @patient.id) %>
     </li>
-    <li class="px-4 text-sm 2xl:text-lg py-2 rounded-md <%= 'bg-primary'if tab=='Treatments' %>">
+    <li class="text-xs md:text-sm 2xl:text-lg py-2 px-2 md:px-4 rounded-md <%= 'bg-primary text-white'if tab=='Treatments' %>">
         Treatments
     </li>
 </div>

@@ -8,6 +8,13 @@ module Admin
     before_action :load_diagnosis, only: %i[edit]
     def index
       @patient_diagnoses = @patient.patient_diagnoses
+                                   .includes(:tooth_diagnoses, :tooth_diagnosis_treatments)
+                                   .select('patient_diagnoses.*,
+                 COUNT(DISTINCT tooth_diagnoses.id) as total_diagnosed_teeth,
+                 COUNT(DISTINCT tooth_diagnosis_treatments.id) as total_treatments'
+                                          )
+                                   .left_joins(:tooth_diagnoses, :tooth_diagnosis_treatments)
+                                   .group('patient_diagnoses.id')
     end
 
     def edit
