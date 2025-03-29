@@ -32,28 +32,38 @@
             </button>
             <button type="button"
               class="flex items-center flex-1 min-w-0 px-2 py-2 mt-1 border border-gray-300 rounded-r-md 2xl:mt-2 focus:ring-primary focus:border-primary sm:text-sm 2xl:text-lg" >
-                <% if tooth_diagnosis.tooth_diagnosis_treatments.any? %>
-                  <div class="flex-1 min-w-0 truncate text-start">
-                    <%= tooth_diagnosis.tooth_diagnosis_treatments.map { |treatment| treatment.treatment.name }.join(', ') %>
-                  </div>
-                  <div class="flex-shrink-0 ml-2">
-                    <%= render "admin/shared/svg", name: 'chevron-right' %>
-                  </div>
-                <% else %>
-                  <%= I18n.t('tooth_diagnosis_treatments.select_treatments') %>
-                <% end %>
+              <% if tooth_diagnosis.tooth_diagnosis_treatments.any? %>
+                <div class="flex-1 min-w-0 truncate text-start">
+                  <%= tooth_diagnosis.tooth_diagnosis_treatments.map { |treatment| treatment.treatment.name }.join(', ') %>
+                </div>
+                <div class="flex-shrink-0 ml-2">
+                  <%= render "admin/shared/svg", name: 'chevron-right' %>
+                </div>
+              <% else %>
+                <%= I18n.t('tooth_diagnosis_treatments.select_treatments') %>
+              <% end %>
             </button>
           </div>
+          <button 
+            data-drawer-target="drawer-right-<%= tooth_diagnosis.id %>" 
+            data-drawer-show="drawer-right-<%= tooth_diagnosis.id %>" 
+            data-drawer-placement="right" aria-controls="drawer-right-<%= tooth_diagnosis.id %>"
+            data-action="tooth-diagnoses#editToothDiagnosis"
+            data-tooth-diagnosis-id="<%= tooth_diagnosis.id %>"
+            class="p-2 mt-1 text-lg font-bold transition-all duration-300 text-primary hover:text-secondary">
+            <%= render "admin/shared/svg", name: 'edit' %>
+          </button>
           <button 
             data-tooth-diagnoses-target="toothDeleteButton" 
             data-tooth-diagnosis-id="<%= tooth_diagnosis.id %>"
             data-patient-diagnosis-id="<%= patient_diagnosis_id %>"
             data-action="tooth-diagnoses#deleteToothDiagnosis"
-            class="px-4 py-2 text-lg font-bold text-red-400 transition-all duration-300 hover:text-red-600">
-            -
+            class="p-2 mt-1 text-lg font-bold text-red-400 transition-all duration-300 hover:text-red-600">
+            <%= render "admin/shared/svg", name: 'delete' %>
           </button>
         </div>
         <%= render "admin/tooth_diagnoses/drop_down_options", services: @services, tooth_diagnosis: tooth_diagnosis, patient_diagnosis_id: patient_diagnosis_id %>
+        <%= render "admin/tooth_diagnoses/drawer", tooth_diagnosis: tooth_diagnosis %>
       </div>
     <% end %>
   </div>

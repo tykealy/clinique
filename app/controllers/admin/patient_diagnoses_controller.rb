@@ -8,13 +8,25 @@ module Admin
     before_action :load_diagnosis, only: %i[edit]
     def index
       @patient_diagnoses = @patient.patient_diagnoses
-                                   .includes(:tooth_diagnoses, :tooth_diagnosis_treatments)
                                    .select('patient_diagnoses.*,
-                 COUNT(DISTINCT tooth_diagnoses.id) as total_diagnosed_teeth,
+                 COUNT(DISTINCT tooth_diagnoses.tooth_number) as total_diagnosed_teeth,
                  COUNT(DISTINCT tooth_diagnosis_treatments.id) as total_treatments'
                                           )
                                    .left_joins(:tooth_diagnoses, :tooth_diagnosis_treatments)
                                    .group('patient_diagnoses.id')
+
+      # Preload distinct tooth numbers in a single query
+      tooth_numbers = ToothDiagnosis
+                      .select(:patient_diagnosis_id, :tooth_number)
+                      .distinct
+                      .where(patient_diagnosis_id: @patient_diagnoses.map(&:id))
+                      .group_by(&:patient_diagnosis_id)
+
+      # Attach the preloaded data to each patient_diagnosis
+      @patient_diagnoses.each do |pd|
+        pd.instance_variable_set(:@tooth_numbers, tooth_numbers[pd.id] || [])
+        pd.define_singleton_method(:tooth_numbers) { @tooth_numbers }
+      end
     end
 
     def new; end

@@ -31,7 +31,6 @@
         </div>
       </div>
     </div>
-
     <!-- Right Side: Tooth diagnoses -->
     <div class="w-full xl:w-1/2">
       <div class="p-4">
@@ -43,7 +42,6 @@
                 patient_diagnosis_id: @patient_diagnosis.id
               } %>
           </div>
-        
           <% if @diagnosed_teeth.present? %>
             <div data-controller="tooth-diagnoses">
               <% @diagnosed_teeth.each do |tooth_number, diagnoses| %>
@@ -61,7 +59,6 @@
       </div>
     </div>
   </div>
-
   <!-- Description Area (Mobile Only) -->
   <div class="block p-4 xl:hidden">
     <div class="p-2">
