@@ -3,8 +3,8 @@ module Admin
     add_flash_types :danger, :info, :warning, :success, :messages
     before_action :authenticate_user!
     before_action :current_clinic
-    before_action :load_appointment_count
-    before_action :load_record
+    before_action :load_appointment_count, except: %i[create update destroy]
+    before_action :load_record, except: %i[index edit new]
 
     def current_clinic
       @current_clinic ||= current_user.clinics.first

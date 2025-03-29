@@ -17,6 +17,8 @@ module Admin
                                    .group('patient_diagnoses.id')
     end
 
+    def new; end
+
     def edit
       @patient = @patient_diagnosis.patient
       @services = Service.all
@@ -41,6 +43,8 @@ module Admin
         flash[:danger] = I18n.t('flash.danger', record: @record)
       end
     end
+
+    def destroy; end
 
     private
 

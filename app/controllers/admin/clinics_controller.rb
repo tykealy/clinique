@@ -3,9 +3,13 @@ module Admin
     before_action :load_clinic, only: %i[edit update]
     def index; end
 
+    def new; end
+
     def edit
       @current_clinic = Clinic.find(params[:id])
     end
+
+    def create; end
 
     def update
       if @current_clinic.update(clinic_params)
@@ -15,6 +19,8 @@ module Admin
       end
       redirect_to edit_admin_clinic_path(@current_clinic)
     end
+
+    def destroy; end
 
     private
 
