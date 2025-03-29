@@ -7,7 +7,7 @@
       <div class="flex">
         <% (18.downto(11)).each do |number| %>
           <% has_diagnosis = @diagnosed_teeth&.[](number) %>
-          <span class="w-8 text-center rounded-md 2xl:w-10 hover:bg-gray-200">
+          <span class="w-5 text-center rounded-md sm:w-8 2xl:w-10 hover:bg-gray-200">
             <span class="text-xs"><%= number %></span>
             <div data-tooth-number="<%= number %>" 
               data-action="dblclick->teeth#dbClickTooth"
@@ -23,7 +23,7 @@
       <div class="flex">
         <% (21..28).each do |number| %>
           <% has_diagnosis = @diagnosed_teeth&.[](number) %>
-          <span class="w-8 text-center rounded-md 2xl:w-10 hover:bg-gray-200">
+          <span class="w-5 text-center rounded-md sm:w-8 2xl:w-10 hover:bg-gray-200">
             <span class="text-xs"><%= number %></span>
             <div data-tooth-number="<%= number %>" 
                  data-teeth-target="tooth" 
@@ -42,7 +42,7 @@
       <div class="flex">
         <% (48.downto(41)).each do |number| %>
           <% has_diagnosis = @diagnosed_teeth&.[](number) %>
-          <span class="w-8 text-center rounded-md 2xl:w-10 hover:bg-gray-200">
+          <span class="w-5 text-center rounded-md sm:w-8 2xl:w-10 hover:bg-gray-200">
             <div data-tooth-number="<%= number %>" 
                  data-teeth-target="tooth" 
                  data-action="dblclick->teeth#dbClickTooth"
@@ -58,7 +58,7 @@
       <div class="flex">
         <% (31..38).each do |number| %>
           <% has_diagnosis = @diagnosed_teeth&.[](number) %>
-          <span class="w-8 text-center rounded-md 2xl:w-10 hover:bg-gray-200">
+          <span class="w-5 text-center rounded-md sm:w-8 2xl:w-10 hover:bg-gray-200">
             <div data-tooth-number="<%= number %>" 
                  data-teeth-target="tooth" 
                  data-action="dblclick->teeth#dbClickTooth"
