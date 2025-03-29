@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_28_173542) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_29_072923) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -131,6 +131,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_28_173542) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "clinic_id", null: false
+    t.integer "tooth_diagnoses_count", default: 0
     t.index ["clinic_id"], name: "index_patient_diagnoses_on_clinic_id"
     t.index ["patient_id"], name: "index_patient_diagnoses_on_patient_id"
   end
@@ -174,6 +175,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_28_173542) do
     t.bigint "patient_diagnosis_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "tooth_diagnosis_treatments_count", default: 0
     t.index ["diagnosis_id"], name: "index_tooth_diagnoses_on_diagnosis_id"
     t.index ["patient_diagnosis_id"], name: "index_tooth_diagnoses_on_patient_diagnosis_id"
     t.index ["tooth_number", "patient_diagnosis_id", "diagnosis_id"], name: "idx_on_tooth_number_patient_diagnosis_id_diagnosis__5b995e5e7f", unique: true

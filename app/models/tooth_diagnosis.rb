@@ -1,5 +1,5 @@
 class ToothDiagnosis < ApplicationRecord
-  belongs_to :patient_diagnosis
+  belongs_to :patient_diagnosis, counter_cache: true
 
   delegate :clinic, to: :patient_diagnosis
 
